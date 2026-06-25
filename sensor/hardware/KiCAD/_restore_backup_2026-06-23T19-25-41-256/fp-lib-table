@@ -1,0 +1,5 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "Footprints") (type "KiCad") (uri "C:/Users/rizz/YandexDisk/KiCAD/Footprints.pretty") (options "") (descr ""))
+	(lib (name "custom_footprints") (type "KiCad") (uri "C:/Users/rizz/YandexDisk/KiCAD/Footprints/custom_footprints.pretty") (options "") (descr ""))
+)
