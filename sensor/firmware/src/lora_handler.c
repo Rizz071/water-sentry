@@ -1,58 +1,95 @@
 #include "lora_handler.h"
-#include "lora.h"     // Заголовочник из компонента esp32-lora-library
-#include "protocol.h" // Наша структура пакета на 6 байт
+#include "protocol.h"
 #include "esp_log.h"
+#include <string.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "lora.h"
 
-static const char *TAG = "LORA_HANDLER";
+static const char *TAG = "LORA_MGR";
+static uint16_t tx_packet_counter = 0;
 
-static uint8_t local_node_id = 0;
-static uint16_t packet_counter = 0;
-
-bool board_lora_init(uint8_t node_id)
+bool lora_handler_init(void)
 {
-    local_node_id = node_id;
+    ESP_LOGI(TAG, "Запуск инициализации LoRa радиомодуля...");
+    
 
-    ESP_LOGI(TAG, "Инициализация шины SPI и чипа SX1278...");
+    // 1. Инициализация SPI и проверка присутствия чипа (пины берутся из menuconfig)
 
-    // Функция lora_init() сама берёт пины из sdkconfig, которые ты вбил в menuconfig!
-    if (lora_init() != 0)
+    if (lora_init() == 0)
     {
-        ESP_LOGE(TAG, "Критическая ошибка: Чип SX1278 (Ra-02) не обнаружен!");
+        ESP_LOGE(TAG, "Критическая ошибка: Чип SX1278 (Ra-02) не откликается по SPI!");
         return false;
     }
 
-    // Настраиваем параметры под платы Ra-02 (433 МГц)
-    lora_set_frequency(433e6);    // Частота 433.0 МГц
-    lora_set_spreading_factor(9); // Радио-покрытие SF9
-    lora_enable_crc();            // Включаем аппаратный контроль целостности пакетов
+    // 2. Накатываем настройки на максимальную пробивную способность
+    lora_set_frequency(433e6);     // Частота 433 МГц (отлично идет сквозь стены)
+    lora_set_tx_power(10);         // Выкручиваем мощность на максимум (+20 dBm / 100 мВт)
+    lora_set_spreading_factor(12); // Экстремальный фактор расширения спектра SF12
+    lora_set_bandwidth(6);     // Узкая полоса 125 кГц для максимальной чувствительности
+    lora_enable_crc();             // Включаем аппаратный контроль целостности
 
-    ESP_LOGI(TAG, "Модуль LoRa Ra-02 успешно запущен на частоте 433 МГц!");
+    ESP_LOGI(TAG, "Радиомодуль Ra-02 успешно настроен в режим Extreme Range!");
     return true;
 }
 
-void send_lora_data(bool is_alarm_triggered, bool liquid_detected, uint16_t battery_voltage)
+void lora_send_binding_packet(uint32_t unique_id)
 {
-    // Компилятор Си позволяет обнулить всю структуру одной строчкой
-    LoraPayload tx_packet = {0};
+    lora_payload_t packet;
+    memset(&packet, 0, sizeof(lora_payload_t));
 
-    tx_packet.node_id = local_node_id;
-    tx_packet.packet_id = packet_counter++;
-    tx_packet.battery_mv = battery_voltage;
+    packet.node_id = unique_id;
+    packet.status = STATUS_BIT_PAIRING_MODE;
+    packet.battery_mv = 3300;
+    packet.packet_id = tx_packet_counter++;
 
-    // Набиваем битовую маску статуса
-    if (is_alarm_triggered)
-    {
-        tx_packet.status |= STATUS_BIT_ALARM_EVENT;
-    }
-    if (liquid_detected)
-    {
-        tx_packet.status |= STATUS_BIT_LIQUID_LEVEL;
-    }
+    ESP_LOGW(TAG, ">>> Отправка пакета ПРИВЯЗКИ: ID=0x%08X, PktSeq=%d",
+             packet.node_id, packet.packet_id);
 
-    ESP_LOGI(TAG, "Отправка Си-пакета #%d (%d байт) в эфир...", tx_packet.packet_id, sizeof(tx_packet));
+    lora_send_packet((uint8_t *)&packet, sizeof(packet));
+}
 
-    // Прямая отправка буфера в FIFO чипа по SPI
-    lora_send_packet((uint8_t *)&tx_packet, sizeof(tx_packet));
+void lora_send_test_alarm_packet(uint32_t unique_id)
+{
+    lora_payload_t packet;
+    memset(&packet, 0, sizeof(lora_payload_t));
 
-    ESP_LOGI(TAG, "Пакет успешно улетел!");
+    packet.node_id = unique_id;
+    packet.status = STATUS_BIT_INTERRUPT | STATUS_BIT_ALARM_WATER;
+    packet.battery_mv = 3300;
+    packet.packet_id = tx_packet_counter++;
+
+    ESP_LOGE(TAG, "🚨 >>> Отправка ТЕСТОВОЙ ТРЕВОГИ: ID=0x%08X, PktSeq=%d",
+             packet.node_id, packet.packet_id);
+
+    lora_send_packet((uint8_t *)&packet, sizeof(packet));
+}
+
+void lora_send_ping_packet(uint32_t unique_id)
+{
+    lora_payload_t packet;
+    memset(&packet, 0, sizeof(lora_payload_t));
+
+    packet.node_id = unique_id;
+    packet.status = STATUS_BIT_PING; // Чистый ноль — признак того, что всё спокойно
+    packet.battery_mv = 3300;        // Тут позже будет реальный замер батареи
+    packet.packet_id = tx_packet_counter++;
+
+    ESP_LOGI(TAG, "❤ >>> Отправка регулярного Heartbeat (ID=0x%08X)", packet.node_id);
+    lora_send_packet((uint8_t *)&packet, sizeof(packet));
+}
+
+void lora_send_real_alarm_packet(uint32_t unique_id)
+{
+    lora_payload_t packet;
+    memset(&packet, 0, sizeof(lora_payload_t));
+
+    packet.node_id = unique_id;
+    // Флаг внеочередного события + реальный флаг аварии:
+    packet.status = STATUS_BIT_INTERRUPT | STATUS_BIT_ALARM_WATER;
+    packet.battery_mv = 3300;
+    packet.packet_id = tx_packet_counter++;
+
+    ESP_LOGE(TAG, "🚨🚨🚨 КРИТИЧЕСКАЯ ТРЕВОГА! ОТПРАВКА СИГНАЛА ПРОТЕЧКИ! (ID=0x%08X)", packet.node_id);
+    lora_send_packet((uint8_t *)&packet, sizeof(packet));
 }

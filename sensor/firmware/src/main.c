@@ -1,45 +1,38 @@
-#include <stdio.h>
+#include "buzzer_handler.h"
+#include "led_handler.h"
+#include "link_button_handle.h"
+#include "water_sensor_handler.h"
+#include "lora_handler.h"
+#include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "esp_log.h"
-
-// Подключаем наши Си-модули
-#include "gpio_init.h"
-#include "lora_handler.h"
-
-static const char *TAG = "MAIN";
 
 void app_main(void)
 {
-    // 1. Инициализация кнопок и светодиодов
-    board_gpio_init();
+// Будим USB-порт
+    vTaskDelay(pdMS_TO_TICKS(2000));
 
-    // 2. Инициализация LoRa (задаем устройству ID = 42)
-    if (!board_lora_init(42))
+    // Полностью очищаем конфигурацию падов и отвязываем их от JTAG
+    // gpio_reset_pin(GPIO_NUM_4);
+    // gpio_reset_pin(GPIO_NUM_5);
+    // gpio_reset_pin(GPIO_NUM_6);
+    // gpio_reset_pin(GPIO_NUM_7);
+
+// ЖЕСТКИЙ ХАК ДЛЯ ПЛАТЫ: Оживляем LoRa module
+    // gpio_reset_pin(GPIO_NUM_3);
+    // gpio_set_direction(GPIO_NUM_3, GPIO_MODE_OUTPUT);
+    // gpio_set_level(GPIO_NUM_3, 1); // Принудительно подаем 3.3В на RESET LoRa!
+
+     if (!lora_handler_init())
     {
-        ESP_LOGE(TAG, "Авария: Радиоканал недоступен!");
+        ESP_LOGE("MAIN", "Ошибка старта LoRa!");
+        return;
     }
 
-    ESP_LOGI(TAG, "Система запущена. Переходим в цикл опроса датчиков...");
+    buzzer_init(GPIO_NUM_0);
+    led_init(GPIO_NUM_8);
+    link_button_init(GPIO_NUM_9);
+    water_sensor_init(GPIO_NUM_1);
 
-    while (1)
-    {
-        // Имитируем опрос: если кнопка нажата (физический 0) — значит пошла вода
-        bool liquid_detected = (gpio_get_level(LINK_BUTTON_PIN) == 0);
-
-        if (liquid_detected)
-        {
-            gpio_set_level(LED_PIN, 0); // Зажигаем диод тревоги
-            // Шлем пакет с флагом тревоги (true) и признаком затопления (true)
-            send_lora_data(true, true, 3600);
-        }
-        else
-        {
-            gpio_set_level(LED_PIN, 1);
-            // Обычный плановый Heartbeat раз в 10 секунд (для теста)
-            send_lora_data(false, false, 3600);
-        }
-
-        vTaskDelay(pdMS_TO_TICKS(10000)); // Ждем 10 секунд
-    }
+    ESP_LOGI("MAIN", "Датчик Sentry узел успешно запущен в работу.");
 }

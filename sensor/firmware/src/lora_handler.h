@@ -1,10 +1,38 @@
-#pragma once
+#ifndef LORA_HANDLER_H
+#define LORA_HANDLER_H
 
 #include <stdint.h>
 #include <stdbool.h>
 
-// Инициализация модуля (частота, SF и CRC настраиваются внутри)
-bool board_lora_init(uint8_t node_id);
+/**
+ * @brief Наша кастомная, пошаговая инициализация SX1278
+ */
+bool lora_hardware_init_custom(void);
 
-// Функция отправки нашей 6-байтовой упакованной структуры
-void send_lora_data(bool is_alarm_triggered, bool liquid_detected, uint16_t battery_voltage);
+/**
+ * @brief Полная инициализация чипа SX1278 (Ra-02) на максимальную дальность
+ * @return true если чип успешно найден и настроен, false при ошибке
+ */
+bool lora_handler_init(void);
+
+/**
+ * @brief Отправка специального пакета для привязки датчика к базовой станции
+ */
+void lora_send_binding_packet(uint32_t unique_id);
+
+/**
+ * @brief Отправка тестового пакета тревоги (имитация протечки)
+ */
+void lora_send_test_alarm_packet(uint32_t unique_id);
+
+/**
+ * @brief Отправка штатного периодического пакета (Heartbeat)
+ */
+void lora_send_ping_packet(uint32_t unique_id);
+
+/**
+ * @brief Отправка реального пакета тревоги при обнаружении воды
+ */
+void lora_send_real_alarm_packet(uint32_t unique_id);
+
+#endif // LORA_HANDLER_H
