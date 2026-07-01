@@ -72,19 +72,7 @@
       "diff_pair_dimensions": [],
       "drc_exclusions": [
         [
-          "silk_over_copper|108749950|51561500|61d246b3-2c7f-4b7a-8701-16106b367ef1|cf56934f-1c31-4d93-a41d-df646380bc54",
-          ""
-        ],
-        [
-          "silk_over_copper|108749950|54101500|61d246b3-2c7f-4b7a-8701-16106b367ef1|970ba548-7bbd-4d20-b09d-d07e9cfdce58",
-          ""
-        ],
-        [
-          "silk_over_copper|108749950|63021500|61d246b3-2c7f-4b7a-8701-16106b367ef1|bc0e5545-949b-41f0-b634-7b0067369d84",
-          ""
-        ],
-        [
-          "silk_over_copper|108749950|65561500|61d246b3-2c7f-4b7a-8701-16106b367ef1|9ecc969b-0f99-4e2a-95c8-c897e959aec5",
+          "lib_footprint_mismatch|97500000|69000000|af6a54a5-8057-42aa-9e51-a237abb3e987|00000000-0000-0000-0000-000000000000",
           ""
         ],
         [
@@ -96,39 +84,11 @@
           ""
         ],
         [
-          "silk_over_copper|121000000|62350000|c352d55b-7c9f-47dc-acb6-8d9b894b90fd|13685c46-2799-48cd-b4a7-41625da32031",
-          ""
-        ],
-        [
-          "silk_over_copper|121000000|87650000|c352d55b-7c9f-47dc-acb6-8d9b894b90fd|bbfca11a-47f4-4bc7-9137-57b9f0a345b6",
-          ""
-        ],
-        [
-          "silk_over_copper|75749950|54561500|61d246b3-2c7f-4b7a-8701-16106b367ef1|128e4547-76c3-4c72-b7ac-b0a5ae8376c7",
-          ""
-        ],
-        [
-          "silk_over_copper|75749950|57101500|61d246b3-2c7f-4b7a-8701-16106b367ef1|4f9c03ed-2ac0-42df-9baf-46c335e48c1e",
-          ""
-        ],
-        [
-          "silk_over_copper|75749950|66021500|61d246b3-2c7f-4b7a-8701-16106b367ef1|32b15a07-9c34-4106-81a8-f5c8dab92e79",
-          ""
-        ],
-        [
-          "silk_over_copper|75749950|68561500|61d246b3-2c7f-4b7a-8701-16106b367ef1|cb6f1ea8-f983-476b-9e71-0b3e6005077b",
-          ""
-        ],
-        [
           "silk_overlap|109265000|108738748|56e58942-4220-40fe-a559-ad676de4e731|d9665b02-c43a-4856-94ac-d632991ec49d",
           ""
         ],
         [
-          "silk_overlap|115738094|95954819|2135572e-97db-4505-8aa6-b3c892754a4e|2ae6fca6-086b-469c-a0b3-408ed95c9b58",
-          ""
-        ],
-        [
-          "silk_overlap|75642627|59936710|0a046bd9-f0db-44a5-8748-de0818df0dbe|61d246b3-2c7f-4b7a-8701-16106b367ef1",
+          "unconnected_items|142790500|64389279|F.Cu|4|7a8d97d8-2a27-405d-b874-3c5873b025c0|7a8d97d8-2a27-405d-b874-3c5873b025c0",
           ""
         ]
       ],
@@ -603,7 +563,11 @@
       "version": 5
     },
     "net_colors": null,
-    "netclass_assignments": null,
+    "netclass_assignments": {
+      "Net-(J1-Pin_1)": [
+        "Power 220V0"
+      ]
+    },
     "netclass_patterns": [
       {
         "netclass": "Power 12V0",
