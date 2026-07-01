@@ -1,3 +1,5 @@
+[logo]: [https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png](https://github.com/Rizz071/water-sentry/blob/main/water-sentry-logo-1.png) "Блок управления датчиком уровня жидкости"
+
 # WaterSentry 🌊🏹
 
 **WaterSentry** — это полностью автономная система дальнего беспроводного мониторинга уровня жидкости и предотвращения затоплений. 
