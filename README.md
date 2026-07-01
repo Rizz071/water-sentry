@@ -1,4 +1,4 @@
-!(https://github.com/Rizz071/water-sentry/blob/main/water-sentry-logo-1.png)
+![logo](https://github.com/Rizz071/water-sentry/blob/main/water-sentry-logo-1.png "sdfsdf")
 
 # WaterSentry 🌊🏹
 
