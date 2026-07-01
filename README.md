@@ -1,4 +1,4 @@
-[logo](https://github.com/Rizz071/water-sentry/blob/main/water-sentry-logo-1.png) "Блок управления датчиком уровня жидкости"
+!(https://github.com/Rizz071/water-sentry/blob/main/water-sentry-logo-1.png)
 
 # WaterSentry 🌊🏹
 
