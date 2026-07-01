@@ -120,14 +120,6 @@
           ""
         ],
         [
-          "silk_overlap|103138810|56962800|987979e2-d4ee-4ec1-8d86-ebad297ece0a|e560877b-8d19-46f3-a834-44e9fdc742fa",
-          ""
-        ],
-        [
-          "silk_overlap|108749950|59534642|61d246b3-2c7f-4b7a-8701-16106b367ef1|f8c7f8a9-1894-4c70-a95a-da54abc0c675",
-          ""
-        ],
-        [
           "silk_overlap|109265000|108738748|56e58942-4220-40fe-a559-ad676de4e731|d9665b02-c43a-4856-94ac-d632991ec49d",
           ""
         ],
@@ -565,7 +557,7 @@
     "classes": [
       {
         "bus_width": 39,
-        "clearance": 0.5,
+        "clearance": 0.54,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -584,7 +576,7 @@
       },
       {
         "bus_width": 49,
-        "clearance": 0.5,
+        "clearance": 0.54,
         "line_style": 0,
         "name": "Power 12V0",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
@@ -795,7 +787,7 @@
         "uuid": "0a63acd0-8ffb-408e-b0ed-0179bed06f72"
       }
     ],
-    "used_designators": "DC1,U1-3,#FLG1-2,R1-14,J1-3,#PWR1-25,Q1,SW1-2,C1-4,NT1,D1,K1",
+    "used_designators": "DC1,U1-3,#FLG1-2,R1-14,J1-3,#PWR1-25,Q1,SW1-2,C1-4,NT1,D1,K1,F1",
     "variants": []
   },
   "sheets": [
