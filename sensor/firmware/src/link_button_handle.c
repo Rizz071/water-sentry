@@ -1,5 +1,6 @@
 #include "link_button_handle.h"
 #include "lora_handler.h"
+#include "buzzer_handler.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
@@ -53,6 +54,7 @@ static void link_button_task(void *pvParameters)
 
                     uint32_t my_unique_id = generate_unique_id();
                     lora_send_test_alarm_packet(my_unique_id);
+                    buzz(2);
                 }
 
                 // Скан завершен, сбрасываем состояние для следующего нажатия

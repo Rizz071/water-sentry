@@ -9,19 +9,8 @@
 
 void app_main(void)
 {
-// Будим USB-порт
+    // Будим USB-порт
     vTaskDelay(pdMS_TO_TICKS(2000));
-
-    // Полностью очищаем конфигурацию падов и отвязываем их от JTAG
-    // gpio_reset_pin(GPIO_NUM_4);
-    // gpio_reset_pin(GPIO_NUM_5);
-    // gpio_reset_pin(GPIO_NUM_6);
-    // gpio_reset_pin(GPIO_NUM_7);
-
-// ЖЕСТКИЙ ХАК ДЛЯ ПЛАТЫ: Оживляем LoRa module
-    // gpio_reset_pin(GPIO_NUM_3);
-    // gpio_set_direction(GPIO_NUM_3, GPIO_MODE_OUTPUT);
-    // gpio_set_level(GPIO_NUM_3, 1); // Принудительно подаем 3.3В на RESET LoRa!
 
      if (!lora_handler_init())
     {
