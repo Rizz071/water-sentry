@@ -6,6 +6,8 @@
 #include "link_button_handle.h" // Для функции generate_unique_id()
 #include "lora_handler.h"       // Для отправки пакетов пинга и тревоги
 #include "gpio_mapping.h"
+#include "hw_id.h"
+#include "lora_handler.h"
 
 static const char *TAG = "WATER_SENS";
 
@@ -16,7 +18,7 @@ static const char *TAG = "WATER_SENS";
 
 static void water_sensor_polling_task(void *pvParameters)
 {
-    uint32_t unique_id = generate_unique_id();
+    uint32_t unique_id = get_unique_id();
 
     uint32_t heartbeat_counter = 0;
     bool is_flooded = false;
@@ -65,7 +67,7 @@ static void water_sensor_polling_task(void *pvParameters)
                 is_flooded = false;
                 ESP_LOGW(TAG, "Уровень воды пришел в норму (высохло).");
                 // Отправляем один штатный пинг, чтобы база сразу поняла, что авария снята
-                lora_send_ping_packet(unique_id);
+                lora_send_heartbit_packet(unique_id);
                 heartbeat_counter = 0;
             }
             else

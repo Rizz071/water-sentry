@@ -7,7 +7,7 @@
 #include "freertos/task.h"
 #include "gpio_mapping.h"
 
-static const char *TAG = "MAIN_BASE";
+static const char *TAG = "MAIN_GATEWAY";
 
 void app_main(void)
 {
@@ -16,14 +16,14 @@ void app_main(void)
     ESP_LOGI(TAG, "Старт системы контроля протечек Water Sentry (Базовая станция)");
 
     // 1. Инициализируем радиомодуль LoRa (внутри него включится режим RX)
-    if (!lora_init())
+    if (!lora_hw_init())
     {
         ESP_LOGE(TAG, "Критическая ошибка: Старт LoRa провален! Система остановлена.");
         return;
     }
 
     // 2. Инициализация исполнительных устройств и интерфейса базы
-    buzzer_init(BUZZER_PIN);      // Наш мощный бузер-сирена через AO3400
+    buzzer_init();      // Наш мощный бузер-сирена через AO3400
     led_init(LED_PIN);         // Светодиод индикации статуса/привязки
     link_button_init(LINK_BUTTON_PIN); // Кнопка для спаривания с новыми датчиками
 

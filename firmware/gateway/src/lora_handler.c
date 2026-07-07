@@ -6,9 +6,9 @@
 #include "freertos/task.h"
 #include "lora.h"
 
-static const char *TAG = "LORA_BASE";
+static const char *TAG = "LORA_GATEWAY";
 
-bool lora_init(void)
+bool lora_hw_init(void)
 {
     ESP_LOGI(TAG, "Запуск инициализации LoRa базовой станции...");
 

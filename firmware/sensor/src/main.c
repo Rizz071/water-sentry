@@ -13,7 +13,7 @@ void app_main(void)
     // Будим USB-порт
     vTaskDelay(pdMS_TO_TICKS(2000));
 
-     if (!lora_handler_init())
+     if (!lora_hw_init())
     {
         ESP_LOGE("MAIN", "Ошибка старта LoRa!");
         return;

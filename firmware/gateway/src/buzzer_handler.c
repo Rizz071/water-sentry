@@ -2,15 +2,13 @@
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "gpio_mapping.h"
 
-static const char *TAG = "BUZZER_INIT";
-static gpio_num_t BUZZER_PIN;
+static const char *TAG = "BUZZER";
 
-void buzzer_init(gpio_num_t buzzer_gpio)
+void buzzer_init(void)
 {
     ESP_LOGI(TAG, "Конфигурация BUZZER...");
-
-    BUZZER_PIN = buzzer_gpio;
 
     gpio_config_t io_conf = {
         .intr_type = GPIO_INTR_DISABLE,

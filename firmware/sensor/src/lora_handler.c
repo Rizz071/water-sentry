@@ -9,7 +9,7 @@
 static const char *TAG = "LORA_MGR";
 static uint16_t tx_packet_counter = 0;
 
-bool lora_handler_init(void)
+bool lora_hw_init(void)
 {
     ESP_LOGI(TAG, "Запуск инициализации LoRa радиомодуля...");
     

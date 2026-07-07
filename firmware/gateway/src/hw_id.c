@@ -1,6 +1,4 @@
-#include "driver/gpio.h"
 #include "esp_mac.h"
-#include "hw_id.h"
 
 uint32_t get_unique_id(void)
 {

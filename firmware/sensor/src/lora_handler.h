@@ -13,7 +13,7 @@ bool lora_hardware_init_custom(void);
  * @brief Полная инициализация чипа SX1278 (Ra-02) на максимальную дальность
  * @return true если чип успешно найден и настроен, false при ошибке
  */
-bool lora_handler_init(void);
+bool lora_hw_init(void);
 
 /**
  * @brief Отправка специального пакета для привязки датчика к базовой станции

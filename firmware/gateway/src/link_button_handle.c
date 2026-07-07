@@ -4,9 +4,9 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
-#include "esp_mac.h"
 
-static const char *TAG = "BUTTON_CTRL";
+
+static const char *TAG = "LINK_BUTON";
 
 #define BUTTON_POLL_PERIOD_MS 50   // Частота опроса кнопки (50 мс)
 #define HOLD_TIME_LONG_MS 5000     // Время для длинного нажатия (5 секунд)
@@ -35,8 +35,8 @@ static void link_button_task(void *pvParameters)
             {
                 ESP_LOGW(TAG, "Кнопка удержана 5 секунд! Запуск привязки...");
 
-                uint32_t my_unique_id = generate_unique_id();
-                lora_send_binding_packet(my_unique_id);
+                // uint32_t my_unique_id = get_unique_id();
+                // lora_send_binding_packet(my_unique_id);
 
                 long_press_triggered = true; // Блокируем повторный выстрел, пока кнопку держат
             }
@@ -52,8 +52,8 @@ static void link_button_task(void *pvParameters)
                 {
                     ESP_LOGI(TAG, "Краткое нажатие зафиксировано (%d мс). Отправка ТЕСТОВОГО перелива...", press_ticks * BUTTON_POLL_PERIOD_MS);
 
-                    uint32_t my_unique_id = generate_unique_id();
-                    lora_send_test_alarm_packet(my_unique_id);
+                    // uint32_t my_unique_id = get_unique_id();
+                    // lora_send_test_alarm_packet(my_unique_id);
                     buzz(2);
                 }
 
@@ -80,9 +80,3 @@ void link_button_init(gpio_num_t gpio_num)
     xTaskCreate(link_button_task, "link_button_task", 2048, (void *)gpio_num, 10, NULL);
 }
 
-uint32_t generate_unique_id(void)
-{
-    uint8_t mac[6];
-    esp_efuse_mac_get_default(mac);
-    return ((uint32_t)mac[2] << 24) | ((uint32_t)mac[3] << 16) | ((uint32_t)mac[4] << 8) | (uint32_t)mac[5];
-}
