@@ -1,0 +1,11 @@
+#ifndef GPIO_MAPPING_H
+#define GPIO_MAPPING_H
+
+
+#define BUZZER_PIN GPIO_NUM_0
+#define LED_PIN GPIO_NUM_8
+#define LINK_BUTTON_PIN GPIO_NUM_9
+#define WATER_SENSOR_PIN GPIO_NUM_1
+
+
+#endif
