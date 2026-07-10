@@ -2867,7 +2867,7 @@
 		(uuid "185f5557-a2dc-4235-90df-6674479e10c5")
 	)
 	(junction
-		(at 111.76 185.42)
+		(at 130.81 184.15)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "247f0927-21c8-4474-a924-8b9c00f5a75b")
@@ -2879,25 +2879,25 @@
 		(uuid "2cf70a97-0740-4a4d-82e1-e96413c2c387")
 	)
 	(junction
-		(at 85.09 208.28)
+		(at 104.14 207.01)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "462dabff-e17f-4736-b7eb-b1e382ac054b")
 	)
 	(junction
-		(at 85.09 185.42)
+		(at 104.14 184.15)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4d8a8e67-c193-4950-8568-4eca9d8e8d68")
 	)
 	(junction
-		(at 100.33 208.28)
+		(at 119.38 207.01)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7b3c8a72-c72b-42e1-a564-5160dba4dbbb")
 	)
 	(junction
-		(at 137.16 185.42)
+		(at 156.21 184.15)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "80f1cfc0-e265-434d-8d4c-d4d55a456cab")
@@ -2921,13 +2921,13 @@
 		(uuid "9fe7921d-4f1e-4237-9ff8-00e616c0a581")
 	)
 	(junction
-		(at 137.16 208.28)
+		(at 156.21 207.01)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b095d1ad-0639-4036-ac89-c1e7d689285b")
 	)
 	(junction
-		(at 111.76 208.28)
+		(at 130.81 207.01)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b17827aa-f598-42ff-a4e6-e4f2753d94c7")
@@ -2951,7 +2951,13 @@
 		(uuid "cdcc16d3-51df-43a4-b018-f4cf49b29481")
 	)
 	(junction
-		(at 100.33 185.42)
+		(at 52.07 149.86)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e0a6908d-6d91-46a9-b6e7-9da4b32b35ed")
+	)
+	(junction
+		(at 119.38 184.15)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f5a0e383-30c3-4b67-be1d-14a1acefcab0")
@@ -2987,7 +2993,7 @@
 		(uuid "995d6676-847b-4a07-97d5-00a24b5e8a46")
 	)
 	(no_connect
-		(at 171.45 195.58)
+		(at 190.5 194.31)
 		(uuid "99bc3c4f-c8c8-4741-ba53-81e14825d913")
 	)
 	(no_connect
@@ -3104,7 +3110,7 @@
 	)
 	(wire
 		(pts
-			(xy 85.09 208.28) (xy 85.09 205.74)
+			(xy 104.14 207.01) (xy 104.14 204.47)
 		)
 		(stroke
 			(width 0)
@@ -3124,7 +3130,7 @@
 	)
 	(wire
 		(pts
-			(xy 92.71 195.58) (xy 104.14 195.58)
+			(xy 111.76 194.31) (xy 123.19 194.31)
 		)
 		(stroke
 			(width 0)
@@ -3154,7 +3160,7 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 195.58) (xy 129.54 195.58)
+			(xy 138.43 194.31) (xy 148.59 194.31)
 		)
 		(stroke
 			(width 0)
@@ -3194,7 +3200,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 208.28) (xy 85.09 208.28)
+			(xy 77.47 207.01) (xy 104.14 207.01)
 		)
 		(stroke
 			(width 0)
@@ -3224,7 +3230,7 @@
 	)
 	(wire
 		(pts
-			(xy 26.67 195.58) (xy 39.37 195.58)
+			(xy 36.83 194.31) (xy 48.26 194.31)
 		)
 		(stroke
 			(width 0)
@@ -3244,6 +3250,16 @@
 	)
 	(wire
 		(pts
+			(xy 176.53 45.72) (xy 176.53 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2a757abe-eb65-454d-aab1-347caa422615")
+	)
+	(wire
+		(pts
 			(xy 100.33 27.94) (xy 100.33 34.29)
 		)
 		(stroke
@@ -3254,7 +3270,7 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 182.88) (xy 111.76 185.42)
+			(xy 130.81 181.61) (xy 130.81 184.15)
 		)
 		(stroke
 			(width 0)
@@ -3344,7 +3360,7 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 185.42) (xy 137.16 185.42)
+			(xy 130.81 184.15) (xy 156.21 184.15)
 		)
 		(stroke
 			(width 0)
@@ -3384,7 +3400,17 @@
 	)
 	(wire
 		(pts
-			(xy 163.83 208.28) (xy 163.83 205.74)
+			(xy 39.37 149.86) (xy 52.07 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "53835271-2cb5-40ef-a7c9-f04cc9c2953d")
+	)
+	(wire
+		(pts
+			(xy 182.88 207.01) (xy 182.88 204.47)
 		)
 		(stroke
 			(width 0)
@@ -3404,7 +3430,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 208.28) (xy 111.76 208.28)
+			(xy 119.38 207.01) (xy 130.81 207.01)
 		)
 		(stroke
 			(width 0)
@@ -3414,7 +3440,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 208.28) (xy 163.83 208.28)
+			(xy 156.21 207.01) (xy 182.88 207.01)
 		)
 		(stroke
 			(width 0)
@@ -3451,6 +3477,16 @@
 			(type default)
 		)
 		(uuid "647d3249-9005-40b6-9ffe-46621b1b3d40")
+	)
+	(wire
+		(pts
+			(xy 55.88 194.31) (xy 58.42 194.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "66144b40-ea8f-4431-b876-2fe15f0e76d9")
 	)
 	(wire
 		(pts
@@ -3554,7 +3590,7 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 208.28) (xy 137.16 208.28)
+			(xy 130.81 207.01) (xy 156.21 207.01)
 		)
 		(stroke
 			(width 0)
@@ -3574,7 +3610,7 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 208.28) (xy 111.76 205.74)
+			(xy 130.81 207.01) (xy 130.81 204.47)
 		)
 		(stroke
 			(width 0)
@@ -3594,7 +3630,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 185.42) (xy 111.76 185.42)
+			(xy 119.38 184.15) (xy 130.81 184.15)
 		)
 		(stroke
 			(width 0)
@@ -3654,7 +3690,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 185.42) (xy 85.09 185.42)
+			(xy 77.47 184.15) (xy 104.14 184.15)
 		)
 		(stroke
 			(width 0)
@@ -3704,7 +3740,7 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 185.42) (xy 111.76 190.5)
+			(xy 130.81 184.15) (xy 130.81 189.23)
 		)
 		(stroke
 			(width 0)
@@ -3724,7 +3760,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 208.28) (xy 58.42 205.74)
+			(xy 77.47 207.01) (xy 77.47 204.47)
 		)
 		(stroke
 			(width 0)
@@ -3744,7 +3780,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 185.42) (xy 163.83 185.42)
+			(xy 156.21 184.15) (xy 182.88 184.15)
 		)
 		(stroke
 			(width 0)
@@ -3754,7 +3790,7 @@
 	)
 	(wire
 		(pts
-			(xy 85.09 208.28) (xy 100.33 208.28)
+			(xy 104.14 207.01) (xy 119.38 207.01)
 		)
 		(stroke
 			(width 0)
@@ -3804,7 +3840,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 185.42) (xy 137.16 190.5)
+			(xy 156.21 184.15) (xy 156.21 189.23)
 		)
 		(stroke
 			(width 0)
@@ -3844,7 +3880,7 @@
 	)
 	(wire
 		(pts
-			(xy 85.09 185.42) (xy 100.33 185.42)
+			(xy 104.14 184.15) (xy 119.38 184.15)
 		)
 		(stroke
 			(width 0)
@@ -3854,7 +3890,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 208.28) (xy 137.16 205.74)
+			(xy 156.21 207.01) (xy 156.21 204.47)
 		)
 		(stroke
 			(width 0)
@@ -3864,7 +3900,7 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 195.58) (xy 77.47 195.58)
+			(xy 85.09 194.31) (xy 96.52 194.31)
 		)
 		(stroke
 			(width 0)
@@ -3874,7 +3910,7 @@
 	)
 	(wire
 		(pts
-			(xy 163.83 185.42) (xy 163.83 190.5)
+			(xy 182.88 184.15) (xy 182.88 189.23)
 		)
 		(stroke
 			(width 0)
@@ -3894,7 +3930,7 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 208.28) (xy 111.76 210.82)
+			(xy 130.81 207.01) (xy 130.81 209.55)
 		)
 		(stroke
 			(width 0)
@@ -3914,7 +3950,7 @@
 	)
 	(wire
 		(pts
-			(xy 85.09 185.42) (xy 85.09 190.5)
+			(xy 104.14 184.15) (xy 104.14 189.23)
 		)
 		(stroke
 			(width 0)
@@ -3924,7 +3960,7 @@
 	)
 	(wire
 		(pts
-			(xy 46.99 195.58) (xy 50.8 195.58)
+			(xy 66.04 194.31) (xy 69.85 194.31)
 		)
 		(stroke
 			(width 0)
@@ -3984,7 +4020,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 185.42) (xy 58.42 190.5)
+			(xy 77.47 184.15) (xy 77.47 189.23)
 		)
 		(stroke
 			(width 0)
@@ -3994,7 +4030,7 @@
 	)
 	(wire
 		(pts
-			(xy 144.78 195.58) (xy 156.21 195.58)
+			(xy 163.83 194.31) (xy 175.26 194.31)
 		)
 		(stroke
 			(width 0)
@@ -4014,7 +4050,7 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 44.45) (xy 176.53 48.26)
+			(xy 176.53 34.29) (xy 176.53 38.1)
 		)
 		(stroke
 			(width 0)
@@ -4033,7 +4069,7 @@
 		(uuid "0683b74c-6406-4f82-a7b9-5d714024ebbc")
 	)
 	(label "LORA_NSS"
-		(at 57.15 149.86 0)
+		(at 39.37 149.86 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4073,7 +4109,7 @@
 		(uuid "4617f1ab-1f8d-4762-b9a2-3299f89ac464")
 	)
 	(label "LED_LINE"
-		(at 26.67 195.58 0)
+		(at 36.83 194.31 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4204,7 +4240,7 @@
 	)
 	(symbol
 		(lib_id "LED:APA-106-F5")
-		(at 111.76 198.12 0)
+		(at 130.81 196.85 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4215,7 +4251,7 @@
 		(fields_autoplaced yes)
 		(uuid "0fbb287c-fc68-4ed0-a8f4-814b8ffd41cf")
 		(property "Reference" "LED3"
-			(at 124.46 189.1598 0)
+			(at 143.51 187.8898 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4225,7 +4261,7 @@
 			)
 		)
 		(property "Value" "APA-106-F5"
-			(at 124.46 191.6998 0)
+			(at 143.51 190.4298 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4235,7 +4271,7 @@
 			)
 		)
 		(property "Footprint" "LED_THT:LED_D5.0mm-4_RGB_Staggered_Pins"
-			(at 113.03 205.74 0)
+			(at 132.08 204.47 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4247,7 +4283,7 @@
 			)
 		)
 		(property "Datasheet" "https://cdn.sparkfun.com/datasheets/Components/LED/COM-12877.pdf"
-			(at 114.3 207.645 0)
+			(at 133.35 206.375 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4259,7 +4295,7 @@
 			)
 		)
 		(property "Description" "RGB LED with integrated controller, 5mm Package"
-			(at 111.76 198.12 0)
+			(at 130.81 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4374,6 +4410,86 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 176.53 41.91 0)
+		(mirror y)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "1b85d428-e24f-47e5-a093-968a892f6b88")
+		(property "Reference" "R18"
+			(at 180.848 41.91 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0R"
+			(at 178.816 41.91 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder"
+			(at 178.308 41.91 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 176.53 41.91 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 176.53 41.91 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a1bca592-f428-4e50-a034-8c7dfe14905e")
+		)
+		(pin "2"
+			(uuid "c8924f4b-c334-4bfc-b9b9-332d512a5d9e")
+		)
+		(instances
+			(project "gateway"
+				(path "/0a63acd0-8ffb-408e-b0ed-0179bed06f72"
+					(reference "R18")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+5V")
 		(at 52.07 33.02 0)
 		(unit 1)
@@ -4446,6 +4562,86 @@
 			(project "gateway"
 				(path "/0a63acd0-8ffb-408e-b0ed-0179bed06f72"
 					(reference "#PWR02")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 52.07 194.31 270)
+		(mirror x)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "36b2fb1b-56c0-4a4e-8a52-fb81be974c07")
+		(property "Reference" "R17"
+			(at 52.07 198.628 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0R"
+			(at 52.07 196.596 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder"
+			(at 52.07 196.088 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 52.07 194.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 52.07 194.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "aa82d1e5-3522-4bc4-aee6-6a1e1f1f9cff")
+		)
+		(pin "2"
+			(uuid "fbddfb7c-ad40-4fde-985d-42050257306e")
+		)
+		(instances
+			(project "gateway"
+				(path "/0a63acd0-8ffb-408e-b0ed-0179bed06f72"
+					(reference "R17")
 					(unit 1)
 				)
 			)
@@ -4793,7 +4989,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "10k,0805"
 			(at 49.53 137.1601 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4956,7 +5152,7 @@
 				)
 			)
 		)
-		(property "Value" "100,0603"
+		(property "Value" "100,0805"
 			(at 87.63 30.48 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5094,7 +5290,7 @@
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
-		(at 100.33 185.42 0)
+		(at 119.38 184.15 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5105,7 +5301,7 @@
 		(fields_autoplaced yes)
 		(uuid "47aa78b3-b998-4d57-bd71-c235e7d8fe55")
 		(property "Reference" "#FLG01"
-			(at 100.33 183.515 0)
+			(at 119.38 182.245 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5116,7 +5312,7 @@
 			)
 		)
 		(property "Value" "PWR_FLAG"
-			(at 100.33 180.34 0)
+			(at 119.38 179.07 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5126,7 +5322,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 100.33 185.42 0)
+			(at 119.38 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5137,7 +5333,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 100.33 185.42 0)
+			(at 119.38 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5148,7 +5344,7 @@
 			)
 		)
 		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 100.33 185.42 0)
+			(at 119.38 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5172,7 +5368,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 176.53 44.45 0)
+		(at 176.53 34.29 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5183,7 +5379,7 @@
 		(fields_autoplaced yes)
 		(uuid "4b9143a9-d2f8-4ba5-b12b-df349ce7bc02")
 		(property "Reference" "#PWR03"
-			(at 176.53 48.26 0)
+			(at 176.53 38.1 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5194,7 +5390,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 176.53 39.37 0)
+			(at 176.53 29.21 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5204,7 +5400,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 176.53 44.45 0)
+			(at 176.53 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5215,7 +5411,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 176.53 44.45 0)
+			(at 176.53 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5226,7 +5422,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 176.53 44.45 0)
+			(at 176.53 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5271,7 +5467,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "330"
+		(property "Value" "330,0805"
 			(at 115.57 50.7999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5332,7 +5528,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDD")
-		(at 111.76 210.82 0)
+		(at 130.81 209.55 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5343,7 +5539,7 @@
 		(fields_autoplaced yes)
 		(uuid "516d6461-628f-4854-84b6-52f4d95fcc69")
 		(property "Reference" "#PWR023"
-			(at 111.76 217.17 0)
+			(at 130.81 215.9 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5354,7 +5550,7 @@
 			)
 		)
 		(property "Value" "GNDD"
-			(at 111.76 214.63 0)
+			(at 130.81 213.36 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5364,7 +5560,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 111.76 210.82 0)
+			(at 130.81 209.55 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5375,7 +5571,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 111.76 210.82 0)
+			(at 130.81 209.55 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5386,7 +5582,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDD\" , digital ground"
-			(at 111.76 210.82 0)
+			(at 130.81 209.55 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5431,7 +5627,7 @@
 				)
 			)
 		)
-		(property "Value" "6.8k,0603"
+		(property "Value" "6.8k,0805"
 			(at 50.8 66.04 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5512,7 +5708,7 @@
 				)
 			)
 		)
-		(property "Value" "3.3k,0603"
+		(property "Value" "3.3k,0805"
 			(at 66.04 66.04 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5675,7 +5871,7 @@
 				)
 			)
 		)
-		(property "Value" "2.2k,0603"
+		(property "Value" "2.2k,0805"
 			(at 81.28 66.04 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6195,7 +6391,7 @@
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
-		(at 100.33 208.28 180)
+		(at 119.38 207.01 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6206,7 +6402,7 @@
 		(fields_autoplaced yes)
 		(uuid "72380540-47fe-40b3-803d-0befd6f7d0d8")
 		(property "Reference" "#FLG02"
-			(at 100.33 210.185 0)
+			(at 119.38 208.915 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6217,7 +6413,7 @@
 			)
 		)
 		(property "Value" "PWR_FLAG"
-			(at 100.33 213.6241 0)
+			(at 119.38 212.3541 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6227,7 +6423,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 100.33 208.28 0)
+			(at 119.38 207.01 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6238,7 +6434,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 100.33 208.28 0)
+			(at 119.38 207.01 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6249,7 +6445,7 @@
 			)
 		)
 		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 100.33 208.28 0)
+			(at 119.38 207.01 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6689,7 +6885,7 @@
 				)
 			)
 		)
-		(property "Value" "15k,0603"
+		(property "Value" "15k,0805"
 			(at 36.83 66.04 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6827,7 +7023,7 @@
 	)
 	(symbol
 		(lib_id "LED:APA-106-F5")
-		(at 58.42 198.12 0)
+		(at 77.47 196.85 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6838,7 +7034,7 @@
 		(fields_autoplaced yes)
 		(uuid "976cfb15-87f5-461f-9daa-82b672ad3938")
 		(property "Reference" "LED1"
-			(at 71.12 189.1598 0)
+			(at 90.17 187.8898 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6848,7 +7044,7 @@
 			)
 		)
 		(property "Value" "APA-106-F5"
-			(at 71.12 191.6998 0)
+			(at 90.17 190.4298 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6858,7 +7054,7 @@
 			)
 		)
 		(property "Footprint" "LED_THT:LED_D5.0mm-4_RGB_Staggered_Pins"
-			(at 59.69 205.74 0)
+			(at 78.74 204.47 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6870,7 +7066,7 @@
 			)
 		)
 		(property "Datasheet" "https://cdn.sparkfun.com/datasheets/Components/LED/COM-12877.pdf"
-			(at 60.96 207.645 0)
+			(at 80.01 206.375 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6882,7 +7078,7 @@
 			)
 		)
 		(property "Description" "RGB LED with integrated controller, 5mm Package"
-			(at 58.42 198.12 0)
+			(at 77.47 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6993,7 +7189,7 @@
 	)
 	(symbol
 		(lib_id "LED:APA-106-F5")
-		(at 163.83 198.12 0)
+		(at 182.88 196.85 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7004,7 +7200,7 @@
 		(fields_autoplaced yes)
 		(uuid "a07aa997-142f-4a65-a695-b8d240995d5b")
 		(property "Reference" "LED5"
-			(at 176.53 189.1598 0)
+			(at 195.58 187.8898 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7014,7 +7210,7 @@
 			)
 		)
 		(property "Value" "APA-106-F5"
-			(at 176.53 191.6998 0)
+			(at 195.58 190.4298 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7024,7 +7220,7 @@
 			)
 		)
 		(property "Footprint" "LED_THT:LED_D5.0mm-4_RGB_Staggered_Pins"
-			(at 165.1 205.74 0)
+			(at 184.15 204.47 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7036,7 +7232,7 @@
 			)
 		)
 		(property "Datasheet" "https://cdn.sparkfun.com/datasheets/Components/LED/COM-12877.pdf"
-			(at 166.37 207.645 0)
+			(at 185.42 206.375 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7048,7 +7244,7 @@
 			)
 		)
 		(property "Description" "RGB LED with integrated controller, 5mm Package"
-			(at 163.83 198.12 0)
+			(at 182.88 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7429,7 +7625,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "10k,0805"
 			(at 124.46 39.3699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7490,7 +7686,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 43.18 195.58 270)
+		(at 62.23 194.31 270)
 		(mirror x)
 		(unit 1)
 		(body_style 1)
@@ -7502,7 +7698,7 @@
 		(fields_autoplaced yes)
 		(uuid "b7690f1e-06e6-4e38-b935-8a19eed9e9aa")
 		(property "Reference" "R15"
-			(at 43.18 189.23 90)
+			(at 62.23 187.96 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7511,8 +7707,8 @@
 				)
 			)
 		)
-		(property "Value" "330,0603"
-			(at 43.18 191.77 90)
+		(property "Value" "330,0805"
+			(at 62.23 190.5 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7522,7 +7718,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 43.18 197.358 90)
+			(at 62.23 196.088 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7533,7 +7729,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 43.18 195.58 0)
+			(at 62.23 194.31 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7544,7 +7740,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 43.18 195.58 0)
+			(at 62.23 194.31 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8044,7 +8240,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 111.76 182.88 0)
+		(at 130.81 181.61 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8055,7 +8251,7 @@
 		(fields_autoplaced yes)
 		(uuid "e922a880-0449-4d9f-a41f-3e78d09b1408")
 		(property "Reference" "#PWR01"
-			(at 111.76 186.69 0)
+			(at 130.81 185.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8066,7 +8262,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 111.76 177.8 0)
+			(at 130.81 176.53 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8076,7 +8272,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 111.76 182.88 0)
+			(at 130.81 181.61 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8087,7 +8283,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 111.76 182.88 0)
+			(at 130.81 181.61 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8098,7 +8294,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 111.76 182.88 0)
+			(at 130.81 181.61 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8122,7 +8318,7 @@
 	)
 	(symbol
 		(lib_id "LED:APA-106-F5")
-		(at 85.09 198.12 0)
+		(at 104.14 196.85 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8133,7 +8329,7 @@
 		(fields_autoplaced yes)
 		(uuid "eb34bdc8-1c83-40e4-b60b-c8055d629d72")
 		(property "Reference" "LED2"
-			(at 97.79 189.1598 0)
+			(at 116.84 187.8898 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8143,7 +8339,7 @@
 			)
 		)
 		(property "Value" "APA-106-F5"
-			(at 97.79 191.6998 0)
+			(at 116.84 190.4298 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8153,7 +8349,7 @@
 			)
 		)
 		(property "Footprint" "LED_THT:LED_D5.0mm-4_RGB_Staggered_Pins"
-			(at 86.36 205.74 0)
+			(at 105.41 204.47 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8165,7 +8361,7 @@
 			)
 		)
 		(property "Datasheet" "https://cdn.sparkfun.com/datasheets/Components/LED/COM-12877.pdf"
-			(at 87.63 207.645 0)
+			(at 106.68 206.375 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8177,7 +8373,7 @@
 			)
 		)
 		(property "Description" "RGB LED with integrated controller, 5mm Package"
-			(at 85.09 198.12 0)
+			(at 104.14 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8290,7 +8486,6 @@
 	(symbol
 		(lib_id "Device:R")
 		(at 106.68 83.82 0)
-		(mirror y)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8308,10 +8503,10 @@
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
-		(property "Value" "10k,0603"
+		(property "Value" "10k,0805"
 			(at 104.14 85.0899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8319,11 +8514,11 @@
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 108.458 83.82 90)
+			(at 104.902 83.82 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8530,7 +8725,7 @@
 	)
 	(symbol
 		(lib_id "LED:APA-106-F5")
-		(at 137.16 198.12 0)
+		(at 156.21 196.85 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8541,7 +8736,7 @@
 		(fields_autoplaced yes)
 		(uuid "fa6f7813-749d-4d0d-a245-ffcb5b876b0a")
 		(property "Reference" "LED4"
-			(at 149.86 189.1598 0)
+			(at 168.91 187.8898 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8551,7 +8746,7 @@
 			)
 		)
 		(property "Value" "APA-106-F5"
-			(at 149.86 191.6998 0)
+			(at 168.91 190.4298 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8561,7 +8756,7 @@
 			)
 		)
 		(property "Footprint" "LED_THT:LED_D5.0mm-4_RGB_Staggered_Pins"
-			(at 138.43 205.74 0)
+			(at 157.48 204.47 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8573,7 +8768,7 @@
 			)
 		)
 		(property "Datasheet" "https://cdn.sparkfun.com/datasheets/Components/LED/COM-12877.pdf"
-			(at 139.7 207.645 0)
+			(at 158.75 206.375 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8585,7 +8780,7 @@
 			)
 		)
 		(property "Description" "RGB LED with integrated controller, 5mm Package"
-			(at 137.16 198.12 0)
+			(at 156.21 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
