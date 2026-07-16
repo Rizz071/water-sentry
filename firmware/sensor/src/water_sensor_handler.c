@@ -8,10 +8,11 @@
 #include "gpio_mapping.h"
 #include "hw_id.h"
 #include "lora_handler.h"
+#include "buzzer_handler.h"
 
 static const char *TAG = "WATER_SENS";
 
-#define SENSOR_POLL_PERIOD_MS 200  // Проверяем воду каждые 200 мс (быстрая реакция)
+#define SENSOR_POLL_PERIOD_MS 3000  // Проверяем воду каждые 3000 мс
 #define HEARTBEAT_INTERVAL_MS 5000 // Интервал отправки пинга (5 секунд для теста)
 
 #define TICKS_FOR_HEARTBEAT (HEARTBEAT_INTERVAL_MS / SENSOR_POLL_PERIOD_MS) // 25 циклов
@@ -42,6 +43,7 @@ static void water_sensor_polling_task(void *pvParameters)
                 ESP_LOGE(TAG, "Обнаружена протечка! Мгновенный выстрел тревоги в эфир!");
                 lora_send_real_alarm_packet(unique_id);
                 heartbeat_counter = 0; // Сбрасываем счетчик, чтобы контролировать шаг повторов
+                buzz(2);
             }
             else
             {
@@ -53,6 +55,7 @@ static void water_sensor_polling_task(void *pvParameters)
                     ESP_LOGW(TAG, "Протечка продолжается. Повторная отправка сигнала тревоги...");
                     lora_send_real_alarm_packet(unique_id);
                     heartbeat_counter = 0;
+                    buzz(2);
                 }
             }
         }
@@ -95,7 +98,7 @@ void water_sensor_init()
         .pin_bit_mask = (1ULL << WATER_SENSOR_PIN),
         .mode = GPIO_MODE_INPUT,
         .pull_up_en = GPIO_PULLUP_DISABLE,
-        .pull_down_en = GPIO_PULLDOWN_ENABLE,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE,
         .intr_type = GPIO_INTR_DISABLE // Опрос в цикле
     };
     gpio_config(&io_conf);
