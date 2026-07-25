@@ -25,13 +25,16 @@
  * 
  * * 2. status (1 байт)
  *      Битовая маска флагов состояния. Заменяет несколько переменных bool:
- *      - Бит 0 (0x01): STATUS_BIT_ALARM_EVENT
+ *      - Бит 0 (0x01): STATUS_BIT_PING
  *              0 = Штатный периодический пинг (раз в 5 минут).
  *              1 = Внеочередной пакет по сработке прерывания (тревога).
- *      - Бит 1 (0x02): STATUS_BIT_LIQUID_LEVEL
+ *      - Бит 1 (0x01): STATUS_BIT_ALARM_EVENT
+ *              0 = Штатный периодический пинг (раз в 5 минут).
+ *              1 = Внеочередной пакет по сработке прерывания (тревога).
+ *      - Бит 2 (0x02): STATUS_BIT_LIQUID_LEVEL
  *              0 = Сухо (датчик чист).
  *              1 = Обнаружена жидкость (затопление / критический уровень).
- *      - Бит 2 (0x04): STATUS_BIT_SMOKE_ALARM
+ *      - Бит 3 (0x04): STATUS_BIT_SMOKE_ALARM
  *              Резерв под будущую интеграцию датчика дыма.
  * -            Биты 3..7   : Резерв под системные нужды.
  * 
@@ -53,11 +56,10 @@
 #include <stdint.h>
 
 // Битовая маска для поля status
-#define STATUS_BIT_PING          0x00 // Обычный пинг (все нули)
-#define STATUS_BIT_INTERRUPT     0x01 // Пакет по прерыванию (внеочередной)
-#define STATUS_BIT_ALARM_WATER   0x02 // Авария: обнаружена вода!
-#define STATUS_BIT_ALARM_SMOKE   0x04 // Авария: обнаружен дым (резерв)
-#define STATUS_BIT_PAIRING_MODE  0x80 // КРИТИЧЕСКИЙ БИТ: Это пакет ПРИВЯЗКИ!
+#define STATUS_BIT_PING          (1 << 0)  // Обычный пинг (все нули)
+#define STATUS_BIT_INTERRUPT     (1 << 1) // Пакет по прерыванию (внеочередной)
+#define STATUS_BIT_ALARM_WATER   (1 << 2) // Авария: обнаружена вода!
+#define STATUS_BIT_PAIRING_MODE  (1 << 7) // КРИТИЧЕСКИЙ БИТ: Это пакет ПРИВЯЗКИ!
 
 typedef struct __attribute__((packed))
 {
@@ -66,10 +68,5 @@ typedef struct __attribute__((packed))
     uint16_t battery_mv; // 2 байта: Напряжение батареи в милливольтах
     uint16_t packet_id;  // 2 байта: Счетчик пакетов
 } lora_payload_t;
-
-// Дефайны масок статуса
-#define STATUS_BIT_ALARM_EVENT (1 << 0)
-#define STATUS_BIT_LIQUID_LEVEL (1 << 1)
-// #define STATUS_BIT_SMOKE_ALARM (1 << 2)
 
 #endif // PROTOCOL_H

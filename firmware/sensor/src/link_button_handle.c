@@ -54,7 +54,7 @@ static void link_button_task(void *pvParameters)
 
                     uint32_t my_unique_id = get_unique_id();
                     lora_send_test_alarm_packet(my_unique_id);
-                    buzz(2);
+                    buzz(1);
                 }
 
                 // Скан завершен, сбрасываем состояние для следующего нажатия

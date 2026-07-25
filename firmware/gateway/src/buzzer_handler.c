@@ -6,26 +6,63 @@
 
 static const char *TAG = "BUZZER";
 
-void buzzer_init(void)
+void buzzer_task(void *pvParameters)
+{
+    struct buzzer_t *buzzer = (struct buzzer_t *)pvParameters;
+
+    while (1)
+    {
+        switch (buzzer->current_state)
+        {
+        case BUZZER_SILENCED:
+            // Молчим: выключаем пин и спим 100 мс (не забиваем CPU)
+            gpio_set_level(buzzer->buzzer_pin, 0);
+            vTaskDelay(pdMS_TO_TICKS(100));
+            break;
+
+        case BUZZER_WARNING:
+            // Предупреждение: короткие пики (200 мс звук / 200 мс пауза)
+            gpio_set_level(buzzer->buzzer_pin, 1);
+            vTaskDelay(pdMS_TO_TICKS(200));
+            gpio_set_level(buzzer->buzzer_pin, 0);
+            vTaskDelay(pdMS_TO_TICKS(200));
+            break;
+
+        case BUZZER_ALARM:
+            // Тревога: длинный громкий сигнал (1000 мс звук / 1000 мс пауза)
+            gpio_set_level(buzzer->buzzer_pin, 1);
+            vTaskDelay(pdMS_TO_TICKS(1000));
+            gpio_set_level(buzzer->buzzer_pin, 0);
+            vTaskDelay(pdMS_TO_TICKS(1000));
+            break;
+        }
+    };
+}
+
+void buzzer_init(struct buzzer_t *new_buzzer, int new_buzzer_pin)
 {
     ESP_LOGI(TAG, "Конфигурация BUZZER...");
+
+    new_buzzer->buzzer_pin = new_buzzer_pin;
+    new_buzzer->current_state = BUZZER_SILENCED;
 
     gpio_config_t io_conf = {
         .intr_type = GPIO_INTR_DISABLE,
         .mode = GPIO_MODE_OUTPUT,
-        .pin_bit_mask = (1ULL << BUZZER_PIN),
-        .pull_down_en = GPIO_PULLDOWN_DISABLE,
+        .pin_bit_mask = (1ULL << new_buzzer->buzzer_pin),
+        .pull_down_en = GPIO_PULLDOWN_ENABLE,
         .pull_up_en = GPIO_PULLUP_DISABLE};
     gpio_config(&io_conf);
 
-    gpio_set_level(BUZZER_PIN, 0); // Тишина для бузера
+    xTaskCreate(buzzer_task, "buzzer_task", 3072, (void *)new_buzzer, 3, NULL);
 
-    ESP_LOGI(TAG, "...BUZZER инициализирован.");
+    ESP_LOGI(TAG, "...BUZZER на пине %d инициализирован.", new_buzzer->buzzer_pin);
 }
 
-void buzz(uint16_t seconds)
+void buzzer_set_state(struct buzzer_t *buzzer, enum buzzer_state_t new_state)
 {
-    gpio_set_level(BUZZER_PIN, 1);
-    vTaskDelay(pdMS_TO_TICKS(seconds * 1000));
-    gpio_set_level(BUZZER_PIN, 0);
+    if (buzzer->current_state == new_state)
+        return;
+
+    buzzer->current_state = new_state;
 }

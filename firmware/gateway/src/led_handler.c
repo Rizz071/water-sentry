@@ -4,7 +4,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-static const char *TAG = "LED_INIT";
+// static const char *TAG = "LED_INIT";
 
 void led_init(gpio_num_t gpio_num)
 {

@@ -5,8 +5,23 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "lora.h"
+#include "buzzer_handler.h"
 
 static const char *TAG = "LORA_GATEWAY";
+
+extern struct buzzer_t buzzer;
+
+struct rx_packet_t
+{
+    lora_payload_t payload; // Сами 6 байт данных от датчика
+    int rssi;               // Уровень сигнала (dBm)
+    float snr;              // Соотношение сигнал/шум (dB)
+};
+
+static QueueHandle_t lora_rx_queue = NULL;
+
+void lora_rx_task(void *pvParameters);
+void lora_logik_task(void *pvParameters);
 
 bool lora_hw_init(void)
 {
@@ -25,8 +40,22 @@ bool lora_hw_init(void)
     lora_set_bandwidth(6);         // Узкая полоса 125 кГц
     lora_enable_crc();             // Включаем аппаратный контроль целостности
 
+    // Создаем очередь приёма на 20 пакетов
+    lora_rx_queue = xQueueCreate(20, sizeof(struct rx_packet_t));
+    if (lora_rx_queue == NULL)
+    {
+        ESP_LOGE(TAG, "Не удалось создать очередь приёма LoRa!");
+        return false;
+    }
+
+    // Запускаем единый таск-обработчик принятых lora-сообщений
+    xTaskCreate(lora_logik_task, "lora_logik_task", 3072, NULL, 4, NULL);
+
+    // Запускаем единый таск-прмёник lora-сообщений
+    xTaskCreate(lora_rx_task, "lora_rx_task", 3072, NULL, 5, NULL);
+
     // 3. Переводим чип SX1278 в режим постоянного прослушивания эфира (Implicit/Explicit RX)
-    lora_receive(); 
+    lora_receive();
 
     ESP_LOGI(TAG, "Базовая станция успешно настроена и слушает эфир (Extreme Range)...");
     return true;
@@ -35,67 +64,85 @@ bool lora_hw_init(void)
 /**
  * @brief Бесконечный FreeRTOS-таск для приема данных от датчиков
  */
-void lora_listen_task(void *pvParameters)
+void lora_rx_task(void *pvParameters)
 {
-    lora_payload_t incoming_packet;
-    uint8_t rx_buffer[sizeof(lora_payload_t) + 4]; // Буфер с небольшим запасом
+    struct rx_packet_t rx_msg;
+    uint8_t rx_buffer[sizeof(lora_payload_t)];
 
     while (1)
     {
-        // На всякий случай пинаем чип оставаться в режиме приема (зависит от реализации либы)
-        lora_receive(); 
-
-        // Проверяем, прилетело ли что-то в буфер FIFO чипа SX1278
         if (lora_received())
         {
-            // Вычитываем пакет и узнаем его реальную длину в байтах
             int packet_len = lora_receive_packet(rx_buffer, sizeof(rx_buffer));
-            
-            // Важнейшая проверка: размер пришедших данных должен строго соответствовать нашей структуре
+
             if (packet_len == sizeof(lora_payload_t))
             {
-                // Распаковываем сырые байты обратно в читаемую структуру
-                memcpy(&incoming_packet, rx_buffer, sizeof(lora_payload_t));
+                // 1. Быстро собираем пакет
+                memcpy(&rx_msg.payload, rx_buffer, sizeof(lora_payload_t));
+                rx_msg.rssi = lora_packet_rssi();
+                rx_msg.snr = lora_packet_snr();
 
-                // Вытаскиваем метрики качества сигнала (критично для отладки дальнобойности в подвалах!)
-                int rssi = lora_packet_rssi();
-                float snr = lora_packet_snr();
-
-                ESP_LOGI(TAG, "==================================================");
-                ESP_LOGI(TAG, "📥 ПРИНЯТ ПАКЕТ | От Датчика: 0x%08X | Номер пакета: %d", 
-                         incoming_packet.node_id, incoming_packet.packet_id);
-                ESP_LOGI(TAG, "📊 Качество связи: RSSI = %d dBm, SNR = %.1f dB", rssi, snr);
-                ESP_LOGI(TAG, "🔋 Напряжение батареи датчика: %d мВ", incoming_packet.battery_mv);
-
-                // Анализируем битовые флаги статуса, которые нам отправил датчик
-                if (incoming_packet.status & STATUS_BIT_ALARM_WATER)
+                // 2. Мгновенно скидываем в очередь для обработки
+                if (xQueueSend(lora_rx_queue, &rx_msg, 0) != pdTRUE)
                 {
-                    ESP_LOGE(TAG, "🚨🚨🚨 КРИТИЧЕСКАЯ ТРЕВОГА! ДАТЧИК 0x%08X ПОЙМАЛ ПРОТЕЧКУ ВОДЫ! 🚨🚨🚨", incoming_packet.node_id);
-                    // Здесь в будущем будет команда на включение нашего мощного THT-бузера
+                    ESP_LOGE(TAG, "🚨 Очередь приёма переполнена! Пакет пропущен!");
                 }
-                else if (incoming_packet.status & STATUS_BIT_PAIRING_MODE)
-                {
-                    ESP_LOGW(TAG, "⏳ Режим привязки: Датчик 0x%08X просится в сеть.", incoming_packet.node_id);
-                }
-                else if (incoming_packet.status & STATUS_BIT_PING)
-                {
-                    ESP_LOGI(TAG, "💚 Heartbeat: Датчик 0x%08X на связи, всё сухо и спокойно.", incoming_packet.node_id);
-                }
-                else
-                {
-                    ESP_LOGW(TAG, "❓ Получен неопознанный статус: 0x%02X", incoming_packet.status);
-                }
-                ESP_LOGI(TAG, "==================================================");
             }
             else
             {
                 // Поймали чужой пакет на этой же частоте или ложную наводку
-                ESP_LOGW(TAG, "⚠️ В эфире пойман мусор! Длина пакета (%d байт) не совпадает с протоколом (%d байт)", 
+                ESP_LOGW(TAG, "⚠️ В эфире пойман мусор! Длина пакета (%d байт) не совпадает с протоколом (%d байт)",
                          packet_len, sizeof(lora_payload_t));
             }
-        }
 
-        // Обязательно даем FreeRTOS подышать, чтобы не триггерить Watchdog таймер (WDT)
-        vTaskDelay(pdMS_TO_TICKS(10)); 
+            lora_receive(); // Держим чип в режиме RX
+        }
+        vTaskDelay(pdMS_TO_TICKS(10)); // Не блокируем WDT
+    }
+}
+
+/**
+ * @brief Бесконечный FreeRTOS-таск для обработки принятых по lora данных
+ */
+void lora_logik_task(void *pvParameters)
+{
+    struct rx_packet_t incoming_packet;
+
+    while (1)
+    {
+
+        // Проверяем, прилетело ли что-то в очередь приёма
+        if (xQueueReceive(lora_rx_queue, &incoming_packet, portMAX_DELAY) == pdTRUE)
+        {
+
+            ESP_LOGI(TAG, "==================================================");
+            ESP_LOGI(TAG, "📥 ПРИНЯТ ПАКЕТ | От Датчика: 0x%08X | Номер пакета: %d",
+                     incoming_packet.payload.node_id, incoming_packet.payload.packet_id);
+            ESP_LOGI(TAG, "📧 Код события: %08X", incoming_packet.payload.status);
+            ESP_LOGI(TAG, "📊 Качество связи: RSSI = %d dBm, SNR = %.1f dB", incoming_packet.rssi, incoming_packet.snr);
+            ESP_LOGI(TAG, "🔋 Напряжение батареи датчика: %d мВ", incoming_packet.payload.battery_mv);
+
+            // Анализируем битовые флаги статуса, которые нам отправил датчик
+            if (incoming_packet.payload.status & STATUS_BIT_ALARM_WATER)
+            {
+                ESP_LOGE(TAG, "🚨🚨🚨 КРИТИЧЕСКАЯ ТРЕВОГА! ДАТЧИК 0x%08X ПОЙМАЛ ПРОТЕЧКУ ВОДЫ! 🚨🚨🚨", incoming_packet.payload.node_id);
+                buzzer.current_state = BUZZER_ALARM;
+            }
+            else if (incoming_packet.payload.status & STATUS_BIT_PAIRING_MODE)
+            {
+                ESP_LOGW(TAG, "⏳ Режим привязки: Датчик 0x%08X просится в сеть.", incoming_packet.payload.node_id);
+                buzzer.current_state = BUZZER_WARNING;
+            }
+            else if (incoming_packet.payload.status & STATUS_BIT_PING)
+            {
+                ESP_LOGI(TAG, "💚 Heartbeat: Датчик 0x%08X на связи, всё сухо и спокойно.", incoming_packet.payload.node_id);
+                buzzer.current_state = BUZZER_SILENCED;
+            }
+            else
+            {
+                ESP_LOGW(TAG, "❓ Получен неопознанный статус: 0x%02X", incoming_packet.payload.status);
+            }
+            ESP_LOGI(TAG, "==================================================");
+        }
     }
 }
