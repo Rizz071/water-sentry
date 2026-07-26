@@ -104,6 +104,22 @@ bool sensor_fsm_start_pairing(sensor_slot_t *slots, size_t slot_index)
     if (slot_index >= MAX_SENSORS)
         return false;
 
+    // If pairing on other slots, cancel them
+    for (size_t i = 0; i < MAX_SENSORS; i++)
+    {
+        if (i == slot_index)
+            continue;
+
+        if (slots[i].state == SLOT_PAIRING)
+        {
+            ESP_LOGI(TAG, "Pairing cancelled on slot %d — clearing previous binding.", (int)i);
+            slots[i].mac_addr = 0;
+            slots[i].pairing_start_ms = 0;
+            slots[i].offline_acked = false;
+            set_state(&slots[i], SLOT_EMPTY);
+        }
+    }
+
     // Toggle: if already pairing, cancel and clear the slot
     if (slots[slot_index].state == SLOT_PAIRING)
     {

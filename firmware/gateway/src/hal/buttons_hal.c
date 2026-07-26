@@ -19,8 +19,8 @@ static uint8_t adc_to_button(int adc_raw)
     if (adc_raw >= 0   && adc_raw < 300)  return 1; // BTN1 (0 Ω)
     if (adc_raw >= 500 && adc_raw < 1000) return 2; // BTN2 (2.2k)
     if (adc_raw >= 1200 && adc_raw < 1700) return 3; // BTN3 (5.5k)
-    if (adc_raw >= 2000 && adc_raw < 2500) return 4; // BTN4 (12.3k)
-    if (adc_raw >= 2700 && adc_raw < 3200) return 5; // BTN5 (27.3k)
+    if (adc_raw >= 2000 && adc_raw < 3000) return 4; // BTN4 (12.3k)
+    if (adc_raw >= 3000 && adc_raw < 3500) return 5; // BTN5 (27.3k)
 
     return 0; // Noise
 }
