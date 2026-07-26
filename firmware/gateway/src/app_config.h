@@ -11,7 +11,6 @@
 #define LORA_RX_QUEUE_LENGTH 20 // LoRa RX packet queue capacity
 
 #define BUTTON_POLL_MS      20  // ADC polling interval
-#define BUTTON_DEBOUNCE_CNT 3   // Consecutive reads to confirm press/release
 
 #define SENSOR_TIMEOUT_MS   30000 // 30 s — sensor considered offline
 #define PAIRING_TIMEOUT_MS  60000 // 60 s — pairing mode auto-cancel

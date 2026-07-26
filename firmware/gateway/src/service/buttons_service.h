@@ -3,7 +3,7 @@
 
 /**
  * @brief Buttons service — runs a FreeRTOS task that polls ADC HAL
- *        with debouncing and posts button events to the event bus.
+ *        (hardware-debounced) and posts button events to the event bus.
  */
 
 void buttons_service_init(void);

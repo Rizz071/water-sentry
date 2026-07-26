@@ -104,7 +104,8 @@ bool sensor_fsm_start_pairing(sensor_slot_t *slots, size_t slot_index)
     if (slot_index >= MAX_SENSORS)
         return false;
 
-    // If pairing on other slots, cancel them
+    // If pairing process is going on other slots, cancel them
+    // (but keep their mac_addr — they'll return to SLOT_OK on next packet)
     for (size_t i = 0; i < MAX_SENSORS; i++)
     {
         if (i == slot_index)
@@ -112,11 +113,20 @@ bool sensor_fsm_start_pairing(sensor_slot_t *slots, size_t slot_index)
 
         if (slots[i].state == SLOT_PAIRING)
         {
-            ESP_LOGI(TAG, "Pairing cancelled on slot %d — clearing previous binding.", (int)i);
-            slots[i].mac_addr = 0;
+            ESP_LOGI(TAG, "Pairing cancelled on slot %d, returning to previous state.", (int)i);
             slots[i].pairing_start_ms = 0;
             slots[i].offline_acked = false;
-            set_state(&slots[i], SLOT_EMPTY);
+
+            // Return to SLOT_OK if mac_addr is valid, otherwise SLOT_EMPTY
+            if (slots[i].mac_addr != 0)
+            {
+                set_state(&slots[i], SLOT_OK);
+                slots[i].last_seen_ms = 0;
+            }
+            else
+            {
+                set_state(&slots[i], SLOT_EMPTY);
+            }
         }
     }
 

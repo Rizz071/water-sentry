@@ -13,13 +13,11 @@ static void buttons_polling_task(void *pvParameters)
 {
     buttons_hal_init();
 
-    uint8_t current_button = 0;
-    uint8_t stable_button = 0;
-    uint8_t debounce_counter = 0;
+    uint8_t prev_button = 0;
     uint32_t press_start_ms = 0;
     bool long_press_sent = false;
 
-    ESP_LOGI(TAG, "Buttons polling task started (debounce=%d cycles, long press=3s).", BUTTON_DEBOUNCE_CNT);
+    ESP_LOGI(TAG, "Buttons polling task started (long press=3s).");
 
     esp_task_wdt_add(NULL);
 
@@ -29,59 +27,44 @@ static void buttons_polling_task(void *pvParameters)
 
         uint8_t raw = buttons_hal_read();
 
-        if (raw == current_button)
+        if (raw != 0 && prev_button == 0)
         {
-            debounce_counter++;
-            if (debounce_counter >= BUTTON_DEBOUNCE_CNT)
-            {
-                if (current_button != stable_button)
-                {
-                    if (current_button != 0)
-                    {
-                        // Button just pressed
-                        ESP_LOGI(TAG, "Button [%d] pressed.", current_button);
-                        press_start_ms = xTaskGetTickCount();
-                        long_press_sent = false;
-                    }
-                    else
-                    {
-                        // Button just released
-                        uint32_t held_ms = (xTaskGetTickCount() - press_start_ms) * portTICK_PERIOD_MS;
-                        ESP_LOGI(TAG, "Button [%d] released (held %lu ms).", stable_button, held_ms);
+            // Button just pressed (hardware-debounced)
+            ESP_LOGI(TAG, "Button [%d] pressed.", raw);
+            press_start_ms = xTaskGetTickCount();
+            long_press_sent = false;
+        }
+        else if (raw == 0 && prev_button != 0)
+        {
+            // Button just released
+            uint32_t held_ms = (xTaskGetTickCount() - press_start_ms) * portTICK_PERIOD_MS;
+            ESP_LOGI(TAG, "Button [%d] released (held %lu ms).", prev_button, held_ms);
 
-                        if (!long_press_sent)
-                        {
-                            // Short press
-                            event_t ev = {
-                                .type = EVENT_BTN_PAIR_PRESSED,
-                                .button_num = stable_button};
-                            event_bus_post(&ev);
-                        }
-                    }
-                    stable_button = current_button;
-                }
-                else if (current_button != 0 && !long_press_sent)
-                {
-                    // Button still held — check for long press
-                    uint32_t held_ms = (xTaskGetTickCount() - press_start_ms) * portTICK_PERIOD_MS;
-                    if (held_ms >= 3000)
-                    {
-                        ESP_LOGI(TAG, "Button [%d] long press detected.", current_button);
-                        event_t ev = {
-                            .type = EVENT_BTN_LONG_PRESS,
-                            .button_num = current_button};
-                        event_bus_post(&ev);
-                        long_press_sent = true;
-                    }
-                }
-                debounce_counter = BUTTON_DEBOUNCE_CNT; // Clamp
+            if (!long_press_sent)
+            {
+                // Short press
+                event_t ev = {
+                    .type = EVENT_BTN_PAIR_PRESSED,
+                    .button_num = prev_button};
+                event_bus_post(&ev);
             }
         }
-        else
+        else if (raw != 0 && !long_press_sent)
         {
-            current_button = raw;
-            debounce_counter = 0;
+            // Button still held — check for long press
+            uint32_t held_ms = (xTaskGetTickCount() - press_start_ms) * portTICK_PERIOD_MS;
+            if (held_ms >= 3000)
+            {
+                ESP_LOGI(TAG, "Button [%d] long press detected.", raw);
+                event_t ev = {
+                    .type = EVENT_BTN_LONG_PRESS,
+                    .button_num = raw};
+                event_bus_post(&ev);
+                long_press_sent = true;
+            }
         }
+
+        prev_button = raw;
 
         vTaskDelay(pdMS_TO_TICKS(BUTTON_POLL_MS));
     }
