@@ -12,12 +12,12 @@ enum buzzer_state_t
 
 struct buzzer_t
 {
-    int buzzer_pin;
+    gpio_num_t gpio_num;
     volatile enum buzzer_state_t current_state;
 };
 
 
-void buzzer_init(struct buzzer_t* new_buzzer, int new_buzzer_pin);
+void buzzer_init(struct buzzer_t* buzzer, gpio_num_t gpio_num);
 void buzzer_set_state(struct buzzer_t* buzzer, enum buzzer_state_t new_state);
 
 #endif

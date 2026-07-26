@@ -5,6 +5,7 @@
 #include "freertos/task.h"
 #include "esp_log.h"
 #include "esp_adc/adc_oneshot.h"
+#include "system_events.h"
 
 static const char *TAG = "LINK_BUTTONS";
 
@@ -72,7 +73,10 @@ void link_buttons_polling_task(void *pvParameters)
                 {
                     ESP_LOGI(TAG, "Нажата кнопка [%d] (ADC: %d)", current_button, adc_raw);
 
-                    // Сюда вызовы функций/событий xQueueSend или обработчиков
+                    struct system_event_t ev = {
+                        .type = EVENT_BTN_PAIR_PRESSED,
+                        .button_num = current_button};
+                    system_event_post(&ev);
                 }
                 else
                 {
@@ -97,13 +101,5 @@ void link_buttons_polling_task(void *pvParameters)
 
 void link_buttons_init(gpio_num_t gpio_num)
 {
-    gpio_config_t io_conf = {
-        .pin_bit_mask = (1ULL << gpio_num),
-        .mode = GPIO_MODE_INPUT,
-        .pull_up_en = GPIO_PULLUP_DISABLE,
-        .pull_down_en = GPIO_PULLDOWN_DISABLE,
-        .intr_type = GPIO_INTR_DISABLE};
-    gpio_config(&io_conf);
-
     xTaskCreatePinnedToCore(link_buttons_polling_task, "link_buttons_polling_task", 3072, NULL, 5, NULL, 0);
 }

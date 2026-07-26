@@ -6,6 +6,7 @@
 #include "freertos/task.h"
 #include "lora.h"
 #include "buzzer_handler.h"
+#include "system_events.h"
 
 static const char *TAG = "LORA_GATEWAY";
 
@@ -13,7 +14,7 @@ extern struct buzzer_t buzzer;
 
 struct rx_packet_t
 {
-    lora_payload_t payload; // Сами 6 байт данных от датчика
+    lora_payload_t payload; // 6 байт данных от датчика
     int rssi;               // Уровень сигнала (dBm)
     float snr;              // Соотношение сигнал/шум (dB)
 };
@@ -21,9 +22,9 @@ struct rx_packet_t
 static QueueHandle_t lora_rx_queue = NULL;
 
 void lora_rx_task(void *pvParameters);
-void lora_logik_task(void *pvParameters);
+void lora_logic_task(void *pvParameters);
 
-bool lora_hw_init(void)
+bool lora_hw_init()
 {
     ESP_LOGI(TAG, "Запуск инициализации LoRa базовой станции...");
 
@@ -49,7 +50,7 @@ bool lora_hw_init(void)
     }
 
     // Запускаем единый таск-обработчик принятых lora-сообщений
-    xTaskCreate(lora_logik_task, "lora_logik_task", 3072, NULL, 4, NULL);
+    xTaskCreate(lora_logic_task, "lora_logic_task", 3072, NULL, 4, NULL);
 
     // Запускаем единый таск-прмёник lora-сообщений
     xTaskCreate(lora_rx_task, "lora_rx_task", 3072, NULL, 5, NULL);
@@ -104,7 +105,7 @@ void lora_rx_task(void *pvParameters)
 /**
  * @brief Бесконечный FreeRTOS-таск для обработки принятых по lora данных
  */
-void lora_logik_task(void *pvParameters)
+void lora_logic_task(void *pvParameters)
 {
     struct rx_packet_t incoming_packet;
 
@@ -117,7 +118,7 @@ void lora_logik_task(void *pvParameters)
 
             ESP_LOGI(TAG, "==================================================");
             ESP_LOGI(TAG, "📥 ПРИНЯТ ПАКЕТ | От Датчика: 0x%08X | Номер пакета: %d",
-                     incoming_packet.payload.node_id, incoming_packet.payload.packet_id);
+                     incoming_packet.payload.mac_addr, incoming_packet.payload.packet_id);
             ESP_LOGI(TAG, "📧 Код события: %08X", incoming_packet.payload.status);
             ESP_LOGI(TAG, "📊 Качество связи: RSSI = %d dBm, SNR = %.1f dB", incoming_packet.rssi, incoming_packet.snr);
             ESP_LOGI(TAG, "🔋 Напряжение батареи датчика: %d мВ", incoming_packet.payload.battery_mv);
@@ -125,18 +126,30 @@ void lora_logik_task(void *pvParameters)
             // Анализируем битовые флаги статуса, которые нам отправил датчик
             if (incoming_packet.payload.status & STATUS_BIT_ALARM_WATER)
             {
-                ESP_LOGE(TAG, "🚨🚨🚨 КРИТИЧЕСКАЯ ТРЕВОГА! ДАТЧИК 0x%08X ПОЙМАЛ ПРОТЕЧКУ ВОДЫ! 🚨🚨🚨", incoming_packet.payload.node_id);
-                buzzer.current_state = BUZZER_ALARM;
+                ESP_LOGE(TAG, "🚨🚨🚨 КРИТИЧЕСКАЯ ТРЕВОГА! ДАТЧИК 0x%08X ПОЙМАЛ ПРОТЕЧКУ ВОДЫ! 🚨🚨🚨", incoming_packet.payload.mac_addr);
+                struct system_event_t ev = {
+                    .type = EVENT_LORA_PACKET_RX,
+                    .mac_addr = incoming_packet.payload.mac_addr,
+                    .packet_type = incoming_packet.payload.status};
+                system_event_post(&ev);
             }
             else if (incoming_packet.payload.status & STATUS_BIT_PAIRING_MODE)
             {
-                ESP_LOGW(TAG, "⏳ Режим привязки: Датчик 0x%08X просится в сеть.", incoming_packet.payload.node_id);
-                buzzer.current_state = BUZZER_WARNING;
+                ESP_LOGW(TAG, "⏳ Режим привязки: Датчик 0x%08X просится в сеть.", incoming_packet.payload.mac_addr);
+                struct system_event_t ev = {
+                    .type = EVENT_LORA_PACKET_RX,
+                    .mac_addr = incoming_packet.payload.mac_addr,
+                    .packet_type = incoming_packet.payload.status};
+                system_event_post(&ev);
             }
             else if (incoming_packet.payload.status & STATUS_BIT_PING)
             {
-                ESP_LOGI(TAG, "💚 Heartbeat: Датчик 0x%08X на связи, всё сухо и спокойно.", incoming_packet.payload.node_id);
-                buzzer.current_state = BUZZER_SILENCED;
+                ESP_LOGI(TAG, "💚 Heartbeat: Датчик 0x%08X на связи, всё сухо и спокойно.", incoming_packet.payload.mac_addr);
+                struct system_event_t ev = {
+                    .type = EVENT_LORA_PACKET_RX,
+                    .mac_addr = incoming_packet.payload.mac_addr,
+                    .packet_type = incoming_packet.payload.status};
+                system_event_post(&ev);
             }
             else
             {

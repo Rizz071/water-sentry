@@ -1,0 +1,8 @@
+build/
+dist/
+target/
+node_modules/
+.git/
+*.bin
+*.elf
+.pio/
