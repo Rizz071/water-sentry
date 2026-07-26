@@ -1,74 +1,84 @@
-#include "buzzer_handler.h"
-#include "led_strip_handler.h"
-#include "link_button_handle.h"
-#include "lora_handler.h"
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "gpio_mapping.h"
-#include "nvs_storage_handler.h"
-#include "system_events.h"
-#include "system_manager.h"
+#include "app_config.h"
 
-#define MAX_REMOTE_SENSORS_COUNT 5
+#include "hal/buzzer_hal.h"
+#include "hal/led_strip_hal.h"
+#include "hal/nvs_hal.h"
+#include "service/event_bus.h"
+#include "service/sensor_fsm.h"
+#include "service/ui_controller.h"
+#include "service/system_manager.h"
+#include "service/lora_service.h"
+#include "service/buttons_service.h"
 
-static const char *TAG = "MAIN_GATEWAY";
-
-struct buzzer_t buzzer;
-struct rgb_led_strip_handle_t led_strip;
-struct sensor_slot_t slots[MAX_REMOTE_SENSORS_COUNT];
+static const char *TAG = "MAIN_APP";
 
 void app_main(void)
 {
     vTaskDelay(pdMS_TO_TICKS(3000));
-    ESP_LOGI(TAG, "Старт системы контроля протечек Water Sentry (Базовая станция)");
+    ESP_LOGI(TAG, "Water Sentry Gateway starting...");
 
-    // 1. Инициализация подсистемы Flash/NVS
-    nvs_storage_init();
+    /* ======================================================================
+     * LAYER 1: Hardware Abstraction (HAL) — init all peripherals
+     * ====================================================================== */
 
-    // 2. Инициализация исполнительных устройств и интерфейсов
-    buzzer_init(&buzzer, BUZZER_PIN);
-    rgb_led_strip_init(&led_strip, LED_LINE_PIN, 5);
-    link_buttons_init(LINK_BUTTONS_PIN);
+    // NVS flash storage
+    nvs_hal_init();
 
-    // 3. Инициализация системных событий
-    system_events_init();
+    // Buzzer
+    static buzzer_hal_t buzzer;
+    buzzer_hal_init(&buzzer, BUZZER_PIN);
 
-    // 4. Загрузка MAC-адресов из NVS
-    uint8_t sensors_mac_list[MAX_REMOTE_SENSORS_COUNT];
-    nvs_storage_load_sensors(sensors_mac_list, MAX_REMOTE_SENSORS_COUNT);
+    // LED strip
+    static led_strip_hal_t led_strip;
+    led_strip_hal_init(&led_strip, LED_LINE_PIN, MAX_SENSORS);
 
-    for (size_t i = 0; i < MAX_REMOTE_SENSORS_COUNT; i++)
+    /* ======================================================================
+     * LAYER 2: Event bus — the communication backbone
+     * ====================================================================== */
+    event_bus_init();
+
+    /* ======================================================================
+     * LAYER 3: Sensor state machine — load persisted MACs
+     * ====================================================================== */
+    static sensor_slot_t slots[MAX_SENSORS];
+
+    uint8_t mac_list[MAX_SENSORS];
+    size_t mac_size = sizeof(mac_list);
+    memset(mac_list, 0, mac_size);
+
+    esp_err_t nvs_err = nvs_hal_load_blob("sensors", "dev_list", mac_list, &mac_size);
+    if (nvs_err != ESP_OK)
     {
-        ESP_LOGI(TAG, "Загружен MAC[%d]: 0x%02X", (int)i, sensors_mac_list[i]);
+        ESP_LOGW(TAG, "No saved sensors found, starting with empty slots.");
     }
 
-    // 5. Заполнение структурированных слотов и присвоение статусов
-    for (size_t i = 0; i < MAX_REMOTE_SENSORS_COUNT; i++)
+    for (size_t i = 0; i < MAX_SENSORS; i++)
     {
-        slots[i].mac_addr = sensors_mac_list[i];
-        if (slots[i].mac_addr != 0)
-        {
-            slots[i].state = SLOT_OK; // ✅ Ключевое исправление!
-            slots[i].last_seen_ms = xTaskGetTickCount();
-        }
-        else
-        {
-            slots[i].state = SLOT_EMPTY;
-        }
+        ESP_LOGI(TAG, "Loaded MAC[%d]: 0x%02X", (int)i, mac_list[i]);
     }
 
-    // 6. Инициализация менеджера
-    system_manager_init();
+    sensor_fsm_init(slots, mac_list, MAX_SENSORS);
 
-    // 7. Инициализация радиомодуля LoRa
-    if (!lora_hw_init())
-    {
-        ESP_LOGE(TAG, "Критическая ошибка: Старт LoRa провален! Система остановлена.");
-        return;
-    }
+    /* ======================================================================
+     * LAYER 4: System manager — orchestrates FSM
+     * ====================================================================== */
+    system_manager_init(slots, MAX_SENSORS);
 
-    ESP_LOGI(TAG, "Базовая станция Water Sentry успешно запущена и слушает датчики.");
+    /* ======================================================================
+     * LAYER 4.5: UI controller — independent rendering task
+     * ====================================================================== */
+    ui_controller_init(&led_strip, &buzzer, slots, MAX_SENSORS);
+
+    /* ======================================================================
+     * LAYER 5: Peripheral services — LoRa RX + Buttons polling
+     * ====================================================================== */
+    lora_service_init();
+    buttons_service_init();
+
+    ESP_LOGI(TAG, "Water Sentry Gateway fully operational.");
+    ESP_LOGI(TAG, "Monitoring %d sensor slots.", MAX_SENSORS);
 }
-
-// TODO перестал поступать сигнал от датчика - постоянный писк либо сброс по кнопке
