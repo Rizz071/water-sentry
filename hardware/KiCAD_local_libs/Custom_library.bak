@@ -785,7 +785,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "custom_footprints:CKCS BS-01"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
