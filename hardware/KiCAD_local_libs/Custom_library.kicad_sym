@@ -1497,6 +1497,664 @@
 		)
 		(embedded_fonts no)
 	)
+	(symbol "E77-900M22S"
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "U"
+			(at 0 22.86 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "E77-900M22S"
+			(at 0 -22.86 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "custom_footprints:COMM-SMD_30P-L20.0-W14.0-P1.27"
+			(at 0 -25.4 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C5124422.pdf"
+			(at 0 -27.94 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "EBYTE(亿佰特)"
+			(at 0 -30.48 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "E77-900M22S"
+			(at 0 -33.02 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" "C5124422"
+			(at 0 -35.56 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "E77-900M22S_0_1"
+			(rectangle
+				(start -8.89 20.32)
+				(end 8.89 -20.32)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(circle
+				(center -7.62 19.05)
+				(radius 0.38)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(pin unspecified line
+				(at -11.43 17.78 0)
+				(length 2.54)
+				(name "PB3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -11.43 15.24 0)
+				(length 2.54)
+				(name "PB4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -11.43 12.7 0)
+				(length 2.54)
+				(name "PB5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -11.43 10.16 0)
+				(length 2.54)
+				(name "PB6"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -11.43 7.62 0)
+				(length 2.54)
+				(name "PB7"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -11.43 5.08 0)
+				(length 2.54)
+				(name "PB8"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "6"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -11.43 2.54 0)
+				(length 2.54)
+				(name "PA0"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "7"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -11.43 0 0)
+				(length 2.54)
+				(name "PA1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "8"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -11.43 -2.54 0)
+				(length 2.54)
+				(name "PA2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "9"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -11.43 -5.08 0)
+				(length 2.54)
+				(name "PA3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "10"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -11.43 -7.62 0)
+				(length 2.54)
+				(name "PA4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "11"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -11.43 -10.16 0)
+				(length 2.54)
+				(name "PA5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "12"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -11.43 -12.7 0)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "13"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -11.43 -15.24 0)
+				(length 2.54)
+				(name "ANT"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "14"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -11.43 -17.78 0)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "15"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 11.43 -17.78 180)
+				(length 2.54)
+				(name "PA8"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "16"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 11.43 -15.24 180)
+				(length 2.54)
+				(name "NRST"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "17"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 11.43 -12.7 180)
+				(length 2.54)
+				(name "PA9"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "18"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 11.43 -10.16 180)
+				(length 2.54)
+				(name "PA12"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "19"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 11.43 -7.62 180)
+				(length 2.54)
+				(name "PA11"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "20"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 11.43 -5.08 180)
+				(length 2.54)
+				(name "PA10"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "21"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 11.43 -2.54 180)
+				(length 2.54)
+				(name "PB12"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "22"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 11.43 0 180)
+				(length 2.54)
+				(name "PB2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "23"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 11.43 2.54 180)
+				(length 2.54)
+				(name "PB0"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "24"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 11.43 5.08 180)
+				(length 2.54)
+				(name "PA15"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "25"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 11.43 7.62 180)
+				(length 2.54)
+				(name "PC13"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "26"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 11.43 10.16 180)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "27"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 11.43 12.7 180)
+				(length 2.54)
+				(name "VDD"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "28"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 11.43 15.24 180)
+				(length 2.54)
+				(name "SWDIO"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "29"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 11.43 17.78 180)
+				(length 2.54)
+				(name "SWCLK"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "30"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
 	(symbol "ESP32-C3_SUPERMINI_TH"
 		(pin_names
 			(offset 1.016)
@@ -1991,6 +2649,408 @@
 					(effects
 						(font
 							(size 1.016 1.016)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "HT7750A_C259884"
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "U"
+			(at 0 7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "HT7750A_C259884"
+			(at 0 -7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "custom_footprints:HT7750A"
+			(at 0 -10.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Others_Holtek-Semicon-HT7750A_C259884.html"
+			(at 0 -12.7 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "HOLTEK(合泰/盛群)"
+			(at 0 -15.24 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "HT7750A"
+			(at 0 -17.78 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" "C259884"
+			(at 0 -20.32 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "DC-DC Converters"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "HT7750A_C259884_0_1"
+			(rectangle
+				(start -7.62 5.08)
+				(end 7.62 -5.08)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(circle
+				(center -6.35 3.81)
+				(radius 0.38)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(pin unspecified line
+				(at -10.16 2.54 0)
+				(length 2.54)
+				(name "CE"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -10.16 0 0)
+				(length 2.54)
+				(name "VOUT"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -10.16 -2.54 0)
+				(length 2.54)
+				(name "NC"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 10.16 -2.54 180)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 10.16 2.54 180)
+				(length 2.54)
+				(name "LX"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "HT7750_C250900"
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "U"
+			(at 0 10.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "HT7750_C250900"
+			(at 0 -7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "custom_footprints:HT7750"
+			(at 0 -10.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Others_Holtek-Semicon-HT7750_C250900.html"
+			(at 0 -12.7 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "HOLTEK(合泰/盛群)"
+			(at 0 -15.24 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "HT7750"
+			(at 0 -17.78 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" "C250900"
+			(at 0 -20.32 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "DC-DC Converters"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "HT7750_C250900_0_1"
+			(rectangle
+				(start -10.16 2.54)
+				(end 10.16 -5.08)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(circle
+				(center -8.89 1.27)
+				(radius 0.38)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(pin unspecified line
+				(at -12.7 -2.54 0)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 0 5.08 270)
+				(length 2.54)
+				(name "VOUT"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 12.7 -2.54 180)
+				(length 2.54)
+				(name "LX"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
 						)
 					)
 				)
