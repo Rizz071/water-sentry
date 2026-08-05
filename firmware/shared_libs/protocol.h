@@ -61,6 +61,12 @@
 #define STATUS_BIT_ALARM_WATER (1 << 2)  // Авария: обнаружена вода!
 #define STATUS_BIT_PAIRING_MODE (1 << 7) // КРИТИЧЕСКИЙ БИТ: Это пакет ПРИВЯЗКИ!
 
+#define LORA_FREQ 434.7e6
+#define LORA_TX_POWER 17
+#define LORA_SPREADING_FACTOR 12
+#define LORA_BANDWITH 6
+#define LORA_CODING_RATE 8
+
 typedef struct __attribute__((packed))
 {
     uint8_t mac_addr;    // 1 байт: Уникальный ID этого датчика (0 - 255)

@@ -53,8 +53,12 @@ static void link_button_task(void *pvParameters)
                     ESP_LOGI(TAG, "Краткое нажатие зафиксировано (%d мс). Отправка ТЕСТОВОГО перелива...", press_ticks * BUTTON_POLL_PERIOD_MS);
 
                     uint32_t my_unique_id = get_unique_id();
-                    lora_send_test_alarm_packet(my_unique_id);
+                    lora_send_heartbit_packet(my_unique_id);
+                    for (int i = 0; i <= 2; i++)
+                        lora_send_test_alarm_packet(my_unique_id);
                     buzz(1);
+                    for (int i = 0; i <= 3; i++)
+                        lora_send_heartbit_packet(my_unique_id);
                 }
 
                 // Скан завершен, сбрасываем состояние для следующего нажатия
@@ -83,7 +87,5 @@ void link_button_init()
         2048,
         NULL,
         10,
-        NULL
-    );
+        NULL);
 }
-

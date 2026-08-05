@@ -12,8 +12,8 @@
 
 static const char *TAG = "WATER_SENS";
 
-#define SENSOR_POLL_PERIOD_MS 3000  // Проверяем воду каждые 3000 мс
-#define HEARTBEAT_INTERVAL_MS 5000 // Интервал отправки пинга (5 секунд для теста)
+#define SENSOR_POLL_PERIOD_MS 1000      // Проверяем воду каждые 1 сек
+#define HEARTBEAT_INTERVAL_MS 5 * 60000 // Интервал отправки пинга раз в 1 мин
 
 #define TICKS_FOR_HEARTBEAT (HEARTBEAT_INTERVAL_MS / SENSOR_POLL_PERIOD_MS) // 25 циклов
 
@@ -41,7 +41,9 @@ static void water_sensor_polling_task(void *pvParameters)
                 // Вода обнаружена только что (смена состояния)
                 is_flooded = true;
                 ESP_LOGE(TAG, "Обнаружена протечка! Мгновенный выстрел тревоги в эфир!");
-                lora_send_real_alarm_packet(unique_id);
+                for (int i = 0; i <= 5; i++)
+                    lora_send_real_alarm_packet(unique_id);
+
                 heartbeat_counter = 0; // Сбрасываем счетчик, чтобы контролировать шаг повторов
                 buzz(2);
             }
@@ -69,8 +71,11 @@ static void water_sensor_polling_task(void *pvParameters)
                 // Вода ушла (высохло / датчик убрали из лужи)
                 is_flooded = false;
                 ESP_LOGW(TAG, "Уровень воды пришел в норму (высохло).");
-                // Отправляем один штатный пинг, чтобы база сразу поняла, что авария снята
-                lora_send_heartbit_packet(unique_id);
+
+                // Отправляем штатный пинг, чтобы база сразу поняла, что авария снята
+                for (int i = 0; i <= 5; i++)
+                    lora_send_heartbit_packet(unique_id);
+
                 heartbeat_counter = 0;
             }
             else
@@ -85,7 +90,7 @@ static void water_sensor_polling_task(void *pvParameters)
             }
         }
 
-        // Засыпаем на 200 мс. Процессор отдыхает, FreeRTOS переключается на другие задачи
+        // Засыпаем. Процессор отдыхает, FreeRTOS переключается на другие задачи
         vTaskDelay(pdMS_TO_TICKS(SENSOR_POLL_PERIOD_MS));
     }
 }

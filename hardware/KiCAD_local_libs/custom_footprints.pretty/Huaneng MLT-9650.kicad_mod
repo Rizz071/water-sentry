@@ -1,0 +1,270 @@
+(footprint "Huaneng MLT-9650"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -4 0)
+		(layer "F.SilkS")
+		(uuid "3e85ae16-90dc-4c88-8e3a-1e5e548eed11")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "BUZ-SMD_L9.6-W9.6-LS10.0-R"
+		(at 0 4 0)
+		(layer "F.Fab")
+		(uuid "fe6aace9-eae6-468f-a1af-024eb8467366")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d87426e3-8eed-48bc-ba5b-77e92ae889e6")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "6679c593-a27b-442a-a065-a21bb96d173b")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "LCSC Part" "C96127"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "2db31577-385b-4e7d-8263-6aaf251afb63")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -5.08 -3.3)
+		(end -5.08 -1.23)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "12d8bc9a-2dc6-4466-bfbe-13a26b470e28")
+	)
+	(fp_line
+		(start -5.08 -3.3)
+		(end -3.3 -5.08)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "bcdfbfc4-77ba-4086-b15e-9a249ebd7dc0")
+	)
+	(fp_line
+		(start -5.08 1.23)
+		(end -5.08 5.08)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "cad4b86a-69d5-4586-971d-d752001f8ad1")
+	)
+	(fp_line
+		(start -4.38 2.41)
+		(end -2.98 2.41)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "838405f9-8daa-46c9-a3b4-bd4a30659951")
+	)
+	(fp_line
+		(start -3.3 -5.08)
+		(end 5.08 -5.08)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f9629f34-93e7-4596-9c41-dba146e41752")
+	)
+	(fp_line
+		(start 2.86 2.54)
+		(end 4.26 2.54)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "0f0d3917-c834-4585-899d-d2a34dcd8d67")
+	)
+	(fp_line
+		(start 3.56 1.78)
+		(end 3.56 3.3)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "d86c3924-af44-462e-b836-1dbe9017429a")
+	)
+	(fp_line
+		(start 5.08 -5.08)
+		(end 5.08 -1.23)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "fbe4a862-c062-4333-95f8-b6e6fc045aed")
+	)
+	(fp_line
+		(start 5.08 1.23)
+		(end 5.08 5.08)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "618b6af4-57ca-45d4-b99a-e0159cfb5f50")
+	)
+	(fp_line
+		(start 5.08 5.08)
+		(end -5.08 5.08)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "55f0375d-eee7-459f-bb2b-499bdb3d3f31")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 1.17 0)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "37119908-f142-4840-a806-1d44ed4e3c5d")
+	)
+	(fp_circle
+		(center 5 -4.8)
+		(end 5.03 -4.8)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "ee691392-461f-473e-b1ae-de745a219adb")
+	)
+	(fp_line
+		(start -4.8 -2.8)
+		(end -2.8 -4.8)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "161ea518-278f-4f7a-8bf0-2b534f0fefa5")
+	)
+	(fp_line
+		(start -4.8 4.8)
+		(end -4.8 -2.8)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "74115c17-cc26-4604-af2a-6f19152bf443")
+	)
+	(fp_line
+		(start -2.8 -4.8)
+		(end 4.8 -4.8)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "116dd5a4-145e-4cb5-a3c2-16738cef8b42")
+	)
+	(fp_line
+		(start 4.8 -4.8)
+		(end 4.8 4.8)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "e7c9a7c7-4b78-4999-8f57-dc783d88bf21")
+	)
+	(fp_line
+		(start 4.8 4.8)
+		(end -4.8 4.8)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "1bd3a3a9-33cc-4e95-bf57-64443423417b")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "8d4a1c98-e193-4d14-92dc-1a0efcfb7765")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at 4.5 0)
+		(size 2.5 1.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "d1309969-e1d2-4b42-aae1-82b5be8fe69c")
+	)
+	(pad "2" smd rect
+		(at -4.5 0)
+		(size 2.5 1.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "21da5f41-2a0b-47a7-9e60-191debf878fa")
+	)
+	(embedded_fonts no)
+	(model "C:/Users/rizz/YandexDisk/KiCAD/3Dmodels/Huaneng MLT-9650.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

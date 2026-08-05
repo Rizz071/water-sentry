@@ -75,6 +75,6 @@ void lora_service_init(void)
         return;
     }
 
-    xTaskCreate(lora_rx_task, "lora_rx_task", 3072, NULL, 5, NULL);
+    xTaskCreate(lora_rx_task, "lora_rx_task", 4096, NULL, 5, NULL);
     ESP_LOGI(TAG, "LoRa service started.");
 }

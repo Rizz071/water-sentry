@@ -6,8 +6,8 @@
 
 static const char *TAG = "UI_CTRL";
 
-#define UI_TASK_PERIOD_MS  50   // 50 ms render loop
-#define PING_BLINK_OFF_MS  100  // LED off duration after ping
+#define UI_TASK_PERIOD_MS 50  // 50 ms render loop
+#define PING_BLINK_OFF_MS 100 // LED off duration after ping
 
 static led_strip_hal_t *g_led_strip = NULL;
 static buzzer_hal_t *g_buzzer = NULL;
@@ -75,7 +75,10 @@ static void ui_task(void *pvParameters)
                 led->red = 255;
                 led->green = 0;
                 led->blue = 0;
-                has_alarm = true;
+                if (!g_slots[i].alarm_acked)
+                {
+                    has_alarm = true;
+                }
                 break;
             }
         }

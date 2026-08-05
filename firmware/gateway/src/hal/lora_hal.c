@@ -17,9 +17,9 @@ bool lora_hal_init(void)
         return false;
     }
 
-    lora_set_frequency(433e6);
-    lora_set_spreading_factor(12);
-    lora_set_bandwidth(6);
+    lora_set_frequency(LORA_FREQ);
+    lora_set_spreading_factor(LORA_SPREADING_FACTOR);
+    lora_set_bandwidth(LORA_BANDWITH);
     lora_enable_crc();
 
     lora_receive();

@@ -12,7 +12,7 @@
 
 #define BUTTON_POLL_MS      20  // ADC polling interval
 
-#define SENSOR_TIMEOUT_MS   30000 // 30 s — sensor considered offline
+#define SENSOR_TIMEOUT_MS   15*60000 // 30 min — sensor considered offline
 #define PAIRING_TIMEOUT_MS  60000 // 60 s — pairing mode auto-cancel
 
 #endif // APP_CONFIG_H

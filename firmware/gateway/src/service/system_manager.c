@@ -61,7 +61,8 @@ static void process_event(const event_t *ev)
 
             case SLOT_OK:
             case SLOT_ALARM:
-                // Short press on bound slot — do nothing (use long press to rebind)
+                // Acknowledge buzzer
+                sensor_fsm_acknowledge_alarm(g_slots, idx);
                 break;
 
             default:

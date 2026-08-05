@@ -86,8 +86,10 @@ void sensor_fsm_init(sensor_slot_t *slots, const uint8_t *mac_list, size_t count
 
         if (mac_list[i] != 0)
         {
-            slots[i].state = SLOT_OK;
+            slots[i].state = SLOT_OFFLINE;
             slots[i].last_seen_ms = 0;
+            slots[i].offline_acked = true;
+            slots[i].alarm_acked = false;
         }
         else
         {
@@ -185,6 +187,9 @@ void sensor_fsm_update(sensor_slot_t *slots, size_t count, uint8_t mac_addr, boo
             {
                 slots[i].last_ping_ms = xTaskGetTickCount();
                 set_state(&slots[i], SLOT_OK);
+
+                if (slots[i].alarm_acked)
+                    slots[i].alarm_acked = false;
             }
             return;
         }
@@ -204,6 +209,22 @@ bool sensor_fsm_acknowledge_offline(sensor_slot_t *slots, size_t slot_index)
 
     slots[slot_index].offline_acked = true;
     ESP_LOGI(TAG, "Slot %d offline buzzer acknowledged by user.", (int)slot_index);
+    return true;
+}
+
+bool sensor_fsm_acknowledge_alarm(sensor_slot_t *slots, size_t slot_index)
+{
+    if (slot_index >= MAX_SENSORS)
+        return false;
+
+    if (slots[slot_index].state != SLOT_ALARM)
+        return false;
+
+    if (slots[slot_index].alarm_acked)
+        return false; // Already acknowledged
+
+    slots[slot_index].alarm_acked = true;
+    ESP_LOGI(TAG, "Slot %d alarm buzzer acknowledged by user.", (int)slot_index);
     return true;
 }
 
