@@ -64,7 +64,7 @@
 #define LORA_FREQ 434.7e6
 #define LORA_TX_POWER 17
 #define LORA_SPREADING_FACTOR 12
-#define LORA_BANDWITH 6
+#define LORA_BANDWITH 6             // 6 - 62.50KHz, 7 - 125KHz
 #define LORA_CODING_RATE 8
 
 typedef struct __attribute__((packed))

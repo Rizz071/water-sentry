@@ -20,6 +20,10 @@ bool lora_hal_init(void)
     lora_set_frequency(LORA_FREQ);
     lora_set_spreading_factor(LORA_SPREADING_FACTOR);
     lora_set_bandwidth(LORA_BANDWITH);
+
+    // ОБЯЗАТЕЛЬНО для SF12 и BW 62.5 kHz:
+    lora_enable_ldro();
+
     lora_enable_crc();
 
     lora_receive();

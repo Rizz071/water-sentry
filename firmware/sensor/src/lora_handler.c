@@ -26,10 +26,14 @@ bool lora_hw_init(void)
 
     // 2. Накатываем настройки на максимальную пробивную способность
     lora_set_coding_rate(LORA_CODING_RATE);
-    lora_set_frequency(LORA_FREQ);                    // Частота 433 МГц (отлично идет сквозь стены)
+    lora_set_frequency(LORA_FREQ);                    // Частота
     lora_set_tx_power(LORA_TX_POWER);                 // Выкручиваем мощность на максимум (+20 dBm / 100 мВт)
     lora_set_spreading_factor(LORA_SPREADING_FACTOR); // Экстремальный фактор расширения спектра SF12
-    lora_set_bandwidth(LORA_BANDWITH);                // Узкая полоса 125 кГц для максимальной чувствительности
+    lora_set_bandwidth(LORA_BANDWITH);                // Узкая полоса 62.5 кГц для максимальной чувствительности
+
+    // ОБЯЗАТЕЛЬНО для SF12 и BW 62.5 kHz:
+    lora_enable_ldro();
+
     lora_enable_crc();                                // Включаем аппаратный контроль целостности
 
     ESP_LOGI(TAG, "Радиомодуль Ra-02 успешно настроен в режим Extreme Range!");
